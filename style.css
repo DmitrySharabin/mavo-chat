@@ -8,23 +8,23 @@
 
 	--avatar-size: 2em;
 
-	height: 100vh;
+	block-size: 100vh;
 	background-color: #f7fafc;
 }
 
 body {
 	display: flex;
 	place-items: center;
-	width: clamp(25em, 100%, 35em);
-	height: 100%;
+	inline-size: clamp(25em, 100%, 35em);
+	block-size: 100%;
 	margin: auto;
 
 	font: 14px var(--font-body);
 }
 
 [mv-app] {
-	width: 100%;
-	height: calc(min(100%, 65em));
+	inline-size: 100%;
+	block-size: calc(min(100%, 65em));
 
 	display: grid;
 	grid-template-rows: auto 1fr auto;
@@ -60,7 +60,7 @@ body {
 		}
 
 :is([mv-permissions~="login"] .mv-bar) button + button {
-			margin-top: 1em;
+			margin-block-start: 1em;
 		}
 
 [mv-permissions~="logout"] .mv-bar {
@@ -87,7 +87,6 @@ body {
 
 [mv-permissions~="logout"] .mv-bar h2::before {
 				content: "💬";
-				margin-right: 0.3em;
 				margin-inline-end: 0.3em;
 			}
 
@@ -135,8 +134,8 @@ article[property="messages"] [property="sender"] [property="avatar"] {
 			grid-area: avatar;
 			align-self: end;
 
-			width: var(--avatar-size);
-			height: var(--avatar-size);
+			inline-size: var(--avatar-size);
+			aspect-ratio: 1;
 
 			border-radius: 50%;
 			object-fit: cover;
@@ -153,7 +152,7 @@ article[property="messages"] [property="sender"] [property="name"] {
 article[property="messages"] [property="message"] {
 		grid-area: message;
 
-		width: 80%;
+		inline-size: 80%;
 		margin: 0;
 		padding: 0.2em 0.5em;
 
@@ -164,7 +163,7 @@ article[property="messages"] [property="message"] {
 	}
 
 article[property="messages"] [property="message"] * {
-			max-width: 100%;
+			max-inline-size: 100%;
 			color: inherit;
 		}
 
@@ -188,7 +187,7 @@ article[property="messages"] .timestamp {
 		grid-area: time;
 
 		margin: 1em 0;
-		margin-top: 1.3em;
+		margin-block-start: 1.3em;
 		font-size: 70%;
 		text-transform: uppercase;
 		text-align: center;
@@ -219,12 +218,10 @@ article[property="messages"] .action-buttons .edit-button:hover,
 				background-color: hsl(50 100% 85%);
 			}
 
-article[property="messages"] .action-buttons {
-			.mv-delete:hover,
-			.mv-delete:focus {
+article[property="messages"] .action-buttons .mv-delete:hover,
+			article[property="messages"] .action-buttons .mv-delete:focus {
 				background-color: hsl(0 100% 95%);
 			}
-	}
 
 article[property="messages"] .action-buttons:hover {
 			opacity: 1;
@@ -257,7 +254,7 @@ form {
 	left: 0;
 	right: 0;
 
-	margin-top: 0.7em;
+	margin-block-start: 0.7em;
 
 	display: flex;
 
