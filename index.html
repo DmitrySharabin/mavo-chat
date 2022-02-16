@@ -94,11 +94,11 @@
 				type: "mv-login",
 				update: (evt) => evt.backend.user ?? {}
 			});
-
-			$.bind(document, "mv-load mv-save", () => {
-				$("#end").scrollIntoView();
-			});
 		})();
+
+		$.bind(document, "mv-load mv-save", () => {
+			$("#end").scrollIntoView();
+		});
 
 		function save(editing = false) {
 			const app = Mavo.all["chat"];
