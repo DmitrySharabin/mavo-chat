@@ -1,3 +1,313 @@
 :root {
 	--font-body: system-ui, sans-serif;
+
+	--color: white;
+	--bg-color: #4299e1;
+	--bubble-color: #2d3748;
+	--bubble-bg-color: #edf2f7;
+
+	--avatar-size: 2em;
+
+	height: 100vh;
+	background-color: #f7fafc;
+}
+
+body {
+	display: flex;
+	place-items: center;
+	width: clamp(25em, 100%, 35em);
+	height: 100%;
+	margin: auto;
+
+	font: 14px var(--font-body);
+}
+
+[mv-app] {
+	width: 100%;
+	height: calc(min(100%, 65em));
+
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	align-items: end;
+
+	overflow-y: scroll;
+	background-color: white;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+		0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+[mv-permissions~="login"] {
+	background-color: inherit;
+	box-shadow: none;
+
+	& .mv-bar {
+		display: flex;
+		flex-direction: column;
+
+		margin: 0 5em;
+
+		& h2 {
+			font-size: 300%;
+			text-align: center;
+		}
+
+		& button {
+			padding: 1em 2em;
+			border-radius: 0.5em;
+			font-size: 150%;
+		}
+
+		& button + button {
+			margin-top: 1em;
+		}
+	}
+}
+
+[mv-permissions~="logout"] {
+	& .mv-bar {
+		display: flex;
+		align-items: center;
+
+		position: sticky;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+
+		padding: 0.2em 1em;
+
+		--bg-color: #2c5282;
+
+		color: var(--color);
+		background-color: var(--bg-color);
+
+		& h2 {
+			flex: 1;
+			&::before {
+				content: "💬";
+				margin-right: 0.3em;
+				margin-inline-end: 0.3em;
+			}
+		}
+
+		& .mv-logout {
+			border: none;
+			background-color: inherit;
+			color: inherit;
+		}
+	}
+}
+
+.mv-bar {
+	& h2 {
+		cursor: default;
+	}
+
+	& button {
+		cursor: pointer;
+	}
+}
+
+article[property="messages"] {
+	display: grid;
+	grid-template-columns: var(--avatar-size) 1fr;
+	grid-template-areas:
+		"time   time"
+		"  .    name"
+		"avatar message";
+	gap: 0.3em;
+
+	margin: 0.5em 1em;
+
+	color: #718096;
+
+	&[mv-mode="edit"] {
+		& .action-buttons {
+			opacity: 1;
+
+			&	.mv-delete {
+				display: none;
+			}
+		}
+	}
+
+	& [property="sender"] {
+		display: contents;
+
+		& [property="avatar"] {
+			grid-area: avatar;
+			align-self: end;
+
+			width: var(--avatar-size);
+			height: var(--avatar-size);
+
+			border-radius: 50%;
+			object-fit: cover;
+
+			overflow: hidden;
+		}
+
+		& [property="name"] {
+			grid-area: name;
+
+			font-size: 80%;
+		}
+	}
+
+	& [property="message"] {
+		grid-area: message;
+
+		width: 80%;
+		margin: 0;
+		padding: 0.2em 0.5em;
+
+		border-radius: 0.8em;
+
+		color: var(--bubble-color, black);
+		background-color: var(--bubble-bg-color, white);
+
+		& * {
+			max-width: 100%;
+			color: inherit;
+		}
+
+		& .mv-editor {
+			margin: 1em 0 !important;
+
+			&:focus {
+				box-shadow: none !important;
+			}
+		}
+
+		&:hover ~ .action-buttons {
+			opacity: 1;
+		}
+	}
+
+	&:not(.mine) [property="message"] {
+		border-bottom-left-radius: initial;
+	}
+
+	& .timestamp {
+		grid-area: time;
+
+		margin: 1em 0;
+		margin-top: 1.3em;
+		font-size: 70%;
+		text-transform: uppercase;
+		text-align: center;
+	}
+
+	& .action-buttons {
+		opacity: 0;
+		position: absolute;
+		right: -0.3em;
+		bottom: -0.7em;
+
+		& button {
+			all: unset;
+
+			cursor: pointer;
+			padding: 0.2em 0.3em;
+			border: 1px solid rgb(0 0 0 / 0.1);
+			border-radius: calc(0.3em + 1px);
+			background-color: ghostwhite;
+			box-shadow: 0 0.1em 0.15em rgb(0 0 0 / 0.12);
+			font-size: 80%;
+			text-align: center;
+		}
+
+		& .edit-button {
+			&:hover,
+			&:focus {
+				background-color: hsl(50 100% 85%);
+			}
+		}
+
+		.mv-delete {
+			&:hover,
+			&:focus {
+				background-color: hsl(0 100% 95%);
+			}
+		}
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+article[property="messages"].mine {
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		"time"
+		"message";
+
+	& [property="sender"] {
+		display: none;
+	}
+
+	& [property="message"] {
+		--bubble-color: #f7fafc;
+		--bubble-bg-color: #4299e1;
+
+		justify-self: end;
+		border-bottom-right-radius: initial;
+	}
+}
+
+form {
+	--bg-color: #2c5282;
+
+	position: sticky;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	margin-top: 0.7em;
+
+	display: flex;
+
+	font-size: 120%;
+	line-height: 1.4em;
+
+	& [property="message"] {
+		flex: 1;
+		padding: 0.2em 0.4em;
+
+		color: inherit;
+		border: 1px solid var(--bg-color);
+
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+	}
+
+	& input[type="submit"] {
+		border: none;
+		color: var(--color);
+		background-color: var(--bg-color);
+
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+	}
+}
+
+[mv-progress="Loading"] [mv-app] {
+	visibility: hidden;
+}
+
+.mv-message.mv-error {
+	display: none;
+}
+
+@media (any-pointer: coarse) {
+	[property="message"] ~ .action-buttons {
+		bottom: -1em;
+
+		button {
+			font-size: 100%;
+		}
+	}
 }
