@@ -179,6 +179,23 @@ article[property="messages"] [property="message"] .mv-editor:focus {
 			opacity: 1;
 		}
 
+article.deleted[property="messages"] .mv-empty[property="message"] {
+			display: revert;
+		}
+
+article.deleted[property="messages"] [property="message"] > p {
+			display: none;
+		}
+
+article.deleted[property="messages"] [property="message"]::before {
+			content: "🚫 This message was deleted.";
+
+			display: block;
+			margin-block: 1em;
+
+			font-style: italic;
+		}
+
 article[property="messages"]:not(.mine, .thread) [property="message"] {
 		border-bottom-left-radius: initial;
 	}

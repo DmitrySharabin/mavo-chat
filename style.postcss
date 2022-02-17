@@ -183,6 +183,25 @@ article[property="messages"] {
 		}
 	}
 
+	&.deleted [property="message"] {
+		&.mv-empty {
+			display: revert;
+		}
+
+		& > p {
+			display: none;
+		}
+
+		&::before {
+			content: "🚫 This message was deleted.";
+
+			display: block;
+			margin-block: 1em;
+
+			font-style: italic;
+		}
+	}
+
 	&:not(.mine, .thread) [property="message"] {
 		border-bottom-left-radius: initial;
 	}

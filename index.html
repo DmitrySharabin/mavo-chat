@@ -39,10 +39,11 @@
 
 		<section mv-list="messages" mv-initial-items="0">
 			<article mv-list-item mv-mode="[mode or read]"
-				class="mv-logged-in [if(sender.uid = userId, 'mine')] [if(sender.uid = $next.sender.uid and $next.timestamp - timestamp <= hour(), 'thread')]">
+				class="mv-logged-in [if(sender.uid = userId, 'mine')] [if(deleted, 'deleted')] [if(sender.uid = $next.sender.uid and $next.timestamp - timestamp <= hour(), 'thread')]">
 
 				<meta property="mode" mv-storage="none" mv-if="false" />
 				<meta property="deleted" datatype="boolean" mv-if="false" />
+				<meta property="deleted_message" mv-if="false" />
 
 				<figure property="sender">
 					<img property="avatar" alt="Avatar" mv-if="sender.uid != $next.sender.uid or $next.timestamp - timestamp > hour()" />
@@ -57,15 +58,17 @@
 					[time(timestamp, "minutes")]
 				</p>
 
-				<div class="action-buttons" mv-if="sender.uid = userId and !deleted">
-					<button class="edit-button" mv-if="!mode or mode = read" mv-action="set(mode, edit)"
+				<div class="action-buttons" mv-if="sender.uid = userId">
+					<button class="edit-button" mv-if="!deleted and !mode or mode = read" mv-action="set(mode, edit)"
 						title="Edit message">✏️</button>
 					<button class="edit-button" mv-if="mode = edit" mv-action="set(mode, read) save(true)"
 						title="Save changes">💾</button>
 					<button class="edit-button" mv-if="mode = edit" mv-action="set(mode, read)"
 						title="Don't save changes">🔙</button>
 
-					<button class="mv-delete" mv-action="set(message, '*🚫 This message was deleted.*') set(deleted, true) save()"
+					<button class="edit-button" mv-if="deleted and deleted_message" mv-action="set(message, deleted_message) set(deleted_message, '') set(deleted, false) save()"
+						title="Restore message">↩️</button>
+					<button class="mv-delete" mv-if="!deleted" mv-action="set(deleted_message, message) set(message, '') set(deleted, true) save()"
 						title="Delete message">❌</button>
 				</div>
 			</article>
