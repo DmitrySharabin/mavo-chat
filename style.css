@@ -197,7 +197,8 @@ article[property="messages"] .action-buttons {
 		opacity: 0;
 		position: absolute;
 		right: -0.3em;
-		bottom: -0.7em
+		bottom: -0.7em;
+		z-index: 1
 	}
 
 article[property="messages"] .action-buttons button {
