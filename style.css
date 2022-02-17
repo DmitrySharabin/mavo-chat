@@ -179,7 +179,7 @@ article[property="messages"] [property="message"] .mv-editor:focus {
 			opacity: 1;
 		}
 
-article[property="messages"]:not(.mine) [property="message"] {
+article[property="messages"]:not(.mine, .thread) [property="message"] {
 		border-bottom-left-radius: initial;
 	}
 
@@ -243,7 +243,18 @@ article.mine[property="messages"] [property="message"] {
 		--bubble-bg-color: #4299e1;
 
 		justify-self: end;
-		border-bottom-right-radius: initial;
+	}
+
+article.mine[property="messages"]:not(.thread) [property="message"] {
+			border-bottom-right-radius: initial;
+		}
+
+article[property="messages"].thread {
+	margin-block-end: -.7em
+}
+
+article.thread.mine[property="messages"] {
+		margin-block-end: -.5em;
 	}
 
 form {

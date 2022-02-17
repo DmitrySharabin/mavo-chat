@@ -183,7 +183,7 @@ article[property="messages"] {
 		}
 	}
 
-	&:not(.mine) [property="message"] {
+	&:not(.mine, .thread) [property="message"] {
 		border-bottom-left-radius: initial;
 	}
 
@@ -251,7 +251,20 @@ article[property="messages"].mine {
 		--bubble-bg-color: #4299e1;
 
 		justify-self: end;
-		border-bottom-right-radius: initial;
+	}
+
+	&:not(.thread) {
+		& [property="message"] {
+			border-bottom-right-radius: initial;
+		}
+	}
+}
+
+article[property="messages"].thread {
+	margin-block-end: -.7em;
+
+	&.mine {
+		margin-block-end: -.5em;
 	}
 }
 
