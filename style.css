@@ -284,7 +284,7 @@ form input[type="submit"] {
 		line-height: inherit;
 	}
 
-[mv-progress="Loading"] * {
+[mv-progress="Loading"] > * {
 	visibility: hidden;
 }
 
