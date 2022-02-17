@@ -24,7 +24,7 @@
 		mv-storage-providers="twitter facebook google github" mv-storage-options="realtime">
 
 		<div class="mv-bar">
-			<h2>Mavo Chat App</h2>
+			<h2>Mavo Chat</h2>
 			<button class="mv-firebase-auth-google">Sign in with Google</button>
 			<button class="mv-firebase-auth-facebook">Sign in with Facebook</button>
 			<button class="mv-firebase-auth-twitter">Sign in with Twitter</button>
@@ -33,23 +33,23 @@
 		</div>
 
 		<!-- Logged-in user -->
-		<meta property="userId" content="[$user.info.uid]" />
-		<meta property="username" content="[$user.name]" />
-		<meta property="avatar" content="[$user.avatar]" />
+		<meta property="userId" content="[$user.info.uid]" mv-if="false" />
+		<meta property="username" content="[$user.name or $user.info.email]" mv-if="false" />
+		<meta property="avatar" content="[$user.avatar]" mv-if="false" />
 
 		<section mv-list="messages" mv-initial-items="0">
 			<article mv-list-item mv-mode="[mode or read]" class="mv-logged-in [if(sender.uid = userId, 'mine')]">
-				<meta property="mode" mv-mode="read" mv-storage="none" />
-				<meta property="deleted" mv-mode="read" datatype="boolean" />
+				<meta property="mode" mv-storage="none" mv-if="false" />
+				<meta property="deleted" datatype="boolean" mv-if="false" />
 
-				<figure property="sender" mv-mode="read">
+				<figure property="sender">
 					<img property="avatar" alt="Avatar" />
 					<figcaption property="name">Anonymous</figcaption>
 				</figure>
 
 				<p property="message" class="markdown"></p>
 
-				<p class="timestamp" mv-if="$index = 0 or timestamp - $previous.timestamp > hour()" mv-mode="read">
+				<p class="timestamp" mv-if="$index = 0 or timestamp - $previous.timestamp > hour()">
 					[month(timestamp, "shortname")]&nbsp;[day(timestamp)],
 					<span mv-if="year(timestamp) != year($today)">[year(timestamp)],</span>
 					[time(timestamp, "minutes")]
@@ -67,12 +67,10 @@
 						title="Delete message">❌</button>
 				</div>
 			</article>
-
 		</section>
 
-		<div id="end">
-			<!-- 	A hack to scroll to the last message -->
-		</div>
+		<!-- 	A hack to scroll to the last message -->
+		<div id="end"></div>
 
 		<form class="mv-logged-in" mv-action="
 			addif(message.trim() != '',
@@ -92,7 +90,7 @@
 
 			Mavo.DOMExpression.special.event("$user", {
 				type: "mv-login",
-				update: (evt) => evt.backend.user ?? {}
+				update: (evt) => evt.backend?.user ?? {}
 			});
 		})();
 
