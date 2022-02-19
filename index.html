@@ -38,7 +38,7 @@
 		<meta property="username" content="[$user.name or $user.info.email]" mv-if="false" />
 		<meta property="avatar" content="[$user.avatar]" mv-if="false" />
 
-		<section mv-list="messages" mv-initial-items="0">
+		<section mv-list="messages" mv-initial-items="0" mv-if="userId">
 			<article mv-list-item mv-mode="[mode or read]"
 				class="mv-logged-in [if(sender.uid = userId, 'mine')] [if(deleted, 'deleted')] [if(sender.uid = $next.sender.uid and $next.timestamp - timestamp <= hour(), 'thread')]">
 
@@ -78,7 +78,7 @@
 		<!-- 	A hack to scroll to the last message -->
 		<div id="end"></div>
 
-		<form class="mv-logged-in" mv-action="
+		<form mv-if="userId" mv-action="
 			add(group(message: message, sender: group(uid: userId, name: username, avatar: avatar), timestamp: $now), messages)
 			set(message, '')
 			save()
@@ -93,7 +93,7 @@
 			await Mavo.ready;
 
 			Mavo.DOMExpression.special.event("$user", {
-				type: "mv-login",
+				type: "mv-login mv-logout",
 				update: (evt) => evt.backend?.user ?? {}
 			});
 		})();
