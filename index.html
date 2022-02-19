@@ -60,7 +60,7 @@
 				</p>
 
 				<div class="action-buttons" mv-if="sender.uid = userId">
-					<button class="edit-button" mv-if="!deleted and !mode or mode = read" mv-action="set(mode, edit)"
+					<button class="edit-button" mv-if="!deleted and (!mode or mode = read)" mv-action="set(mode, edit)"
 						title="Edit message">✏️</button>
 					<button class="edit-button" mv-if="mode = edit" mv-action="set(mode, read) save(true)"
 						title="Save changes">💾</button>
