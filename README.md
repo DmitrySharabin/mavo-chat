@@ -1,2 +1,1 @@
-# mavo-chat
- Chat app made with Mavo
+# Mavo Chat
