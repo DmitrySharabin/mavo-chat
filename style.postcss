@@ -426,13 +426,20 @@ form {
 
 		& > img {
 			inline-size: 2.2em;
-
-			&:where(:hover, :active, :focus) {
-				filter: hue-rotate(45deg) brightness(120%);
-			}
 		}
 
 		cursor: pointer;
+
+		&:disabled {
+			opacity: .5;
+			cursor: not-allowed;
+		}
+
+		&:not(:disabled) {
+			& > img:where(:hover, :active, :focus) {
+				filter: hue-rotate(45deg) brightness(120%);
+			}
+		}
 	}
 }
 

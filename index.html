@@ -79,14 +79,12 @@
 		<div id="end"></div>
 
 		<form class="mv-logged-in" mv-action="
-			addif(message.trim() != '',
-						group(message: message, sender: group(uid: userId, name: username, avatar: avatar), timestamp: $now),
-						messages)
+			add(group(message: message, sender: group(uid: userId, name: username, avatar: avatar), timestamp: $now), messages)
 			set(message, '')
 			save()
 		">
 			<input property="message" mv-storage="none" placeholder="Type a message..." autofocus />
-			<button type="submit" aria-label="Send message" title="Send message"><img src="images/send.svg" width="48" height="48" aria-hidden="true" /></button>
+			<button type="submit" aria-label="Send message" title="Send message" disabled="[message.trim() = '']"><img src="images/send.svg" width="48" height="48" aria-hidden="true" /></button>
 		</form>
 	</main>
 

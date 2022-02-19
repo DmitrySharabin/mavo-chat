@@ -414,21 +414,26 @@ form > [type="submit"] {
 		place-items: center;
 
 		border: none;
-		background: none;
+		background: none
 	}
 
 form > [type="submit"] > img {
-			inline-size: 2.2em
+			inline-size: 2.2em;
 		}
-
-form > [type="submit"] > img:where(:hover, :active, :focus) {
-				filter: hue-rotate(45deg) brightness(120%);
-			}
 
 form > [type="submit"] {
 
-		cursor: pointer;
+		cursor: pointer
 	}
+
+form > [type="submit"]:disabled {
+			opacity: .5;
+			cursor: not-allowed;
+		}
+
+form > [type="submit"]:not(:disabled) > img:where(:hover, :active, :focus) {
+				filter: hue-rotate(45deg) brightness(120%);
+			}
 
 [mv-progress="Loading"] > * {
 	visibility: hidden;
