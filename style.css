@@ -2,16 +2,16 @@
 	--font-body: system-ui, sans-serif;
 
 	--color: white;
-	--bg-color: #4299e1;
-	--bubble-color: #2d3748;
-	--bubble-bg-color: #edf2f7;
+
+	--bubble-color: hsl(218 23% 23%);
+	--bubble-bg-color: hsl(210 38% 95%);
 
 	--avatar-size: 2em;
 
 	--gradient: linear-gradient(to left, hsl(341 65% 48%), hsl(285 40% 38%));
 
 	block-size: 100vh;
-	background-color: #f7fafc;
+	background-color: hsl(204 45% 98%);
 }
 
 body {
@@ -96,11 +96,13 @@ body {
 
 [mv-permissions~="login"] .mv-bar button[class*="auth-google"] {
 				background-image: url("images/logo-google.svg");
+				background-position: calc(50% - .05em) 50%;
 			}
 
 [mv-permissions~="login"] .mv-bar button[class*="auth-facebook"] {
 				background-image: url("images/logo-facebook.svg");
 				background-size: 52%;
+				background-position: calc(50% - .1em) 50%;
 			}
 
 [mv-permissions~="login"] .mv-bar button[class*="auth-twitter"] {
@@ -109,7 +111,7 @@ body {
 
 [mv-permissions~="login"] .mv-bar button[class*="auth-github"] {
 				background-image: url("images/logo-github.svg");
-				background-size: 75%;
+				background-size: 72%;
 			}
 
 [mv-permissions~="login"] .mv-bar button:where(:hover, :active, :focus) {
@@ -206,7 +208,7 @@ article[property="messages"] {
 
 	margin: 0.5em 1em;
 
-	color: #718096
+	color: hsl(216 15% 52%)
 }
 
 article[property="messages"][mv-mode="edit"] .action-buttons {
@@ -348,7 +350,7 @@ article.mine[property="messages"] [property="sender"] {
 	}
 
 article.mine[property="messages"] [property="message"] {
-		--bubble-color: #f7fafc;
+		--bubble-color: hsl(204 45% 98%);
 		--bubble-bg-color: hsl(285 40% 50%);
 
 		justify-self: end;
