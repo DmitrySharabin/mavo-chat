@@ -29,7 +29,7 @@
 			<button class="mv-firebase-auth-facebook">Sign in with Facebook</button>
 			<button class="mv-firebase-auth-twitter">Sign in with Twitter</button>
 			<button class="mv-firebase-auth-github">Sign in with Github</button>
-			<button class="mv-logout">Exit</button>
+			<button class="mv-logout" aria-label="Logout" title="Logout"><img src="images/exit.svg" width="48" height="48" aria-hidden="true" /></button>
 		</div>
 
 		<!-- Logged-in user -->
@@ -84,8 +84,8 @@
 			set(message, '')
 			save()
 		">
-			<input property="message" mv-storage="none" placeholder="Type a message" />
-			<input type="submit" value="Send" />
+			<input property="message" mv-storage="none" placeholder="Type a message..." autofocus />
+			<button type="submit" aria-label="Send message" title="Send message"><img src="images/send.svg" width="48" height="48" aria-hidden="true" /></button>
 		</form>
 	</main>
 
