@@ -47,7 +47,7 @@
 				<meta property="deleted_message" mv-if="false" />
 
 				<figure property="sender">
-					<img property="avatar" alt="Avatar" mv-if="sender.uid != $next.sender.uid or $next.timestamp - timestamp > hour()" />
+					<img property="avatar" alt="Avatar" width="28" mv-if="sender.uid != $next.sender.uid or $next.timestamp - timestamp > hour()" />
 					<figcaption property="name" mv-if="sender.uid != $previous.sender.uid or timestamp - $previous.timestamp > hour()">Anonymous</figcaption>
 				</figure>
 
