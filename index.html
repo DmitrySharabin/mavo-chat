@@ -101,7 +101,9 @@
 		})();
 
 		$.bind(document, "mv-load mv-save", () => {
-			$("#end").scrollIntoView();
+			requestAnimationFrame(() => { // Give the browser a chance to render
+				$("#end").scrollIntoView();
+			});
 		});
 
 		function save(editing = false) {
