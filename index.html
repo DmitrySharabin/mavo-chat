@@ -78,10 +78,11 @@
 		<!-- 	A hack to scroll to the last message -->
 		<div id="end"></div>
 
-		<form mv-if="userId" mv-action="
-			add(group(message: message, sender: group(uid: userId, name: username, avatar: avatar), timestamp: $now), messages)
-			set(message, '')
-			save()
+		<form mv-if="userId" mv-action="if(message.trim() != '',
+				add(group(message: message, sender: group(uid: userId, name: username, avatar: avatar), timestamp: $now), messages) &
+				set(message, '') &
+				save()
+			)
 		">
 			<input property="message" mv-storage="none" placeholder="Type a message..." autofocus />
 			<button type="submit" aria-label="Send message" title="Send message" disabled="[message.trim() = '']"><img src="images/send.svg" width="48" height="48" aria-hidden="true" /></button>
