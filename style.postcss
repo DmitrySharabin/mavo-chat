@@ -445,8 +445,13 @@ form {
 	}
 }
 
-[mv-progress="Loading"] > * {
-	visibility: hidden;
+[mv-progress="Loading"] {
+	background: none;
+	box-shadow: none;
+
+	& > * {
+		visibility: hidden;
+	}
 }
 
 .mv-message.mv-error {

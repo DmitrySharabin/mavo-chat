@@ -437,9 +437,14 @@ form > [type="submit"]:not(:disabled) > img:where(:hover, :active, :focus) {
 				filter: hue-rotate(45deg) brightness(120%);
 			}
 
-[mv-progress="Loading"] > * {
-	visibility: hidden;
+[mv-progress="Loading"] {
+	background: none;
+	box-shadow: none
 }
+
+[mv-progress="Loading"] > * {
+		visibility: hidden;
+	}
 
 .mv-message.mv-error {
 	display: none;
