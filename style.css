@@ -96,13 +96,13 @@ body {
 
 [mv-permissions~="login"] .mv-bar button[class*="auth-google"] {
 				background-image: url("images/logo-google.svg");
-				background-position: calc(50% - .05em) 50%;
+				background-position: calc(50% - .02em) 50%;
 			}
 
 [mv-permissions~="login"] .mv-bar button[class*="auth-facebook"] {
 				background-image: url("images/logo-facebook.svg");
 				background-size: 52%;
-				background-position: calc(50% - .1em) 50%;
+				background-position: calc(50% - .08em) 50%;
 			}
 
 [mv-permissions~="login"] .mv-bar button[class*="auth-twitter"] {
@@ -324,8 +324,8 @@ article[property="messages"] .action-buttons button {
 			text-align: center;
 		}
 
-article[property="messages"] .action-buttons .edit-button:hover,
-			article[property="messages"] .action-buttons .edit-button:focus {
+article[property="messages"] .action-buttons .action-button:hover,
+			article[property="messages"] .action-buttons .action-button:focus {
 				background-color: hsl(50 100% 85%);
 			}
 
