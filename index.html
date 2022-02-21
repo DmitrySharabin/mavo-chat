@@ -19,12 +19,12 @@
 </head>
 
 <body>
-	<main mv-app="chat" mv-bar="no-status no-save" mv-mode="read" mv-plugins="firebase-firestore markdown"
-		mv-storage="firebase://mavo-demos" mv-storage-key="AIzaSyDvZ3EBuhlvFm529vMPeU7dbqvdkjv9WQU"
+	<main mv-app="chat" mv-bar="no-status no-save no-login" mv-mode="read" mv-plugins="firebase-firestore markdown"
+		mv-storage="firebase://mavo-demos/chat-rooms/[current_room]" mv-storage-key="AIzaSyDvZ3EBuhlvFm529vMPeU7dbqvdkjv9WQU"
 		mv-storage-providers="twitter facebook google github" mv-storage-options="realtime">
 
 		<div class="mv-bar">
-			<h2>Mavo Chat</h2>
+			<h1>Mavo Chat</h1>
 			<p>Log in using your account</p>
 			<button class="mv-firebase-auth-google">Log in with Google</button>
 			<button class="mv-firebase-auth-facebook">Log in with Facebook</button>
@@ -38,8 +38,25 @@
 		<meta property="username" content="[$user.name or $user.info.email]" mv-if="false" />
 		<meta property="avatar" content="[$user.avatar]" mv-if="false" />
 
+		<meta property="current_room" content="General" mv-storage="none" />
+		<meta property="adding" content="[false]" mv-storage="none" />
+
 		<section id="no-messages" mv-if="userId and count(messages) = 0">
 			<p>No messages yet.<br />Be the first to send one. 😉</p>
+		</section>
+
+		<section id="rooms" mv-if="userId">
+			<h2>Rooms <button aria-label="Add room" title="Add room" mv-action="set(adding, true)" disabled="[adding]">✚</button></h2>
+
+			<ul mv-list mv-value="rooms.names">
+				<li mv-list-item="room" class="[if(current_room = $item, active)]" mv-action="if(current_room != $item, clear(messages) & set(current_room, $item))"></li>
+			</ul>
+
+			<form mv-action="if(room_name.trim() != '', add(room_name, rooms.names) & set(adding, false) & set(room_name, ''))" mv-if="adding">
+				<input type="text" property="room_name" mv-storage="none" placeholder="Type room name" />
+				<input type="submit" value="Add" disabled="[room_name.trim() = '']" />
+				<input type="reset" value="Cancel" mv-action="set(room_name, '') & set(adding, false)" />
+			</form>
 		</section>
 
 		<section mv-list="messages" mv-initial-items="0" mv-if="userId">
@@ -88,10 +105,18 @@
 				save()
 			)
 		">
-			<input property="message" mv-storage="none" placeholder="Type a message..." autofocus />
+			<input property="message" mv-storage="none" placeholder="Type a message" autofocus />
 			<button type="submit" aria-label="Send message" title="Send message" disabled="[message.trim() = '']"><img src="images/send.svg" width="48" height="48" aria-hidden="true" /></button>
 		</form>
 	</main>
+
+	<div hidden mv-app="rooms" mv-bar="none" mv-autosave
+		mv-plugins="firebase-firestore" mv-storage="firebase://mavo-demos/chat-rooms/all-rooms"
+		mv-storage-key="AIzaSyDvZ3EBuhlvFm529vMPeU7dbqvdkjv9WQU" mv-storage-options="realtime">
+		<ul mv-list="names" mv-initial-items="0" mv-if="false">
+			<li mv-list-item></li>
+		</ul>
+	</div>
 
 	<script>
 		(async () => {

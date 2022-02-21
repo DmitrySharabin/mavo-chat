@@ -15,7 +15,7 @@
 }
 
 body {
-	inline-size: clamp(360px, 100%, 600px);
+	inline-size: clamp(360px, 100%, 800px);
 	block-size: 100%;
 	margin: auto;
 
@@ -25,7 +25,7 @@ body {
 	font: 14px var(--font-body);
 }
 
-[mv-app] {
+[mv-app="chat"] {
 	inline-size: 100%;
 
 	display: grid;
@@ -34,12 +34,12 @@ body {
 	box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -1px rgb(0 0 0 / .06);
 }
 
-[mv-permissions~="login"] {
+[mv-app="chat"][mv-permissions~="login"] {
 	background-color: inherit;
 	box-shadow: none
 }
 
-[mv-permissions~="login"] .mv-bar {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar {
 		margin: auto;
 
 		display: grid;
@@ -49,7 +49,7 @@ body {
 		gap: .5em
 	}
 
-[mv-permissions~="login"] .mv-bar h2 {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar h1 {
 			margin: 0;
 
 			font-size: 800%;
@@ -64,17 +64,17 @@ body {
 			background-image: var(--gradient);
 		}
 
-[mv-permissions~="login"] .mv-bar :where(h2, p) {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar :where(h1, p) {
 			grid-column: span 4;
 		}
 
-[mv-permissions~="login"] .mv-bar > p {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar > p {
 			color: hsl(216 15% 52%);
 			font-size: 110%;
 			font-weight: 300;
 		}
 
-[mv-permissions~="login"] .mv-bar button {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar button {
 			all: unset;
 
 			border-radius: 50%;
@@ -93,37 +93,39 @@ body {
 			cursor: pointer
 		}
 
-[mv-permissions~="login"] .mv-bar button[class*="auth-google"] {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar button[class*="auth-google"] {
 				background-image: url("images/logo-google.svg");
 				background-position: calc(50% - .02em) 50%;
 			}
 
-[mv-permissions~="login"] .mv-bar button[class*="auth-facebook"] {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar button[class*="auth-facebook"] {
 				background-image: url("images/logo-facebook.svg");
 				background-size: 52%;
 				background-position: calc(50% - .08em) 50%;
 			}
 
-[mv-permissions~="login"] .mv-bar button[class*="auth-twitter"] {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar button[class*="auth-twitter"] {
 				background-image: url("images/logo-twitter.svg");
 			}
 
-[mv-permissions~="login"] .mv-bar button[class*="auth-github"] {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar button[class*="auth-github"] {
 				background-image: url("images/logo-github.svg");
 				background-size: 72%;
 			}
 
-[mv-permissions~="login"] .mv-bar button:where(:hover, :active, :focus) {
+[mv-app="chat"][mv-permissions~="login"] .mv-bar button:where(:hover, :active, :focus) {
 				filter: hue-rotate(45deg) brightness(120%);
 			}
 
-[mv-permissions~="logout"] {
+[mv-app="chat"][mv-permissions~="logout"] {
 	min-block-size: 100vh;
+
+	grid-template-columns: minmax(auto, 1fr) 3fr;
 	grid-template-rows: auto 1fr auto;
 	align-items: end
 }
 
-[mv-permissions~="logout"] > #no-messages {
+[mv-app="chat"][mv-permissions~="logout"] > #no-messages {
 		place-self: center;
 
 		margin: 1em;
@@ -133,9 +135,158 @@ body {
 		text-align: center;
 		font-size: 140%;
 		font-weight: 100;
+		line-height: 1.2;
 	}
 
-[mv-permissions~="logout"] .mv-bar {
+[mv-app="chat"][mv-permissions~="logout"] > #rooms {
+		min-block-size: 100%;
+
+		overflow-y: scroll;
+
+		grid-row: 2 / span 3;
+		grid-column: 1;
+
+		align-self: start;
+
+		background-color: whitesmoke;
+		border-right: 1px solid rgb(0 0 0 / .05)
+	}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms h2 {
+			margin: .7em .5em;
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline;
+
+			color: hsl(285 40% 38%);
+
+			font-weight: 500;
+			text-transform: uppercase;
+
+			cursor: default
+		}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms h2 button {
+				all: unset;
+
+				padding: .1em .2em;
+
+				border-radius: .2em;
+				border: 2px solid transparent;
+
+				color: inherit;
+				opacity: .75;
+
+				cursor: pointer
+			}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms h2 button:where(:hover, :active, :focus):not(:disabled) {
+					border-color: hsl(285 40% 38%);
+
+					opacity: 1;
+				}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms h2 button:disabled {
+					cursor: not-allowed;
+				}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms ul {
+			padding: 0;
+			margin: 0;
+
+			list-style: none;
+
+			color: hsl(0 0% 30%);
+			font-size: 110%;
+
+			cursor: pointer
+		}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms ul > li {
+				--line-width: 3px;
+				--padding-inline: .7em;
+				padding: var(--padding-inline);
+				padding-inline-start: calc(var(--padding-inline) - var(--line-width));
+
+				border-left: var(--line-width) solid transparent;
+
+				font-weight: 300
+			}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms ul > li:where(:hover, .active) {
+					background-color: hsl(0 0% 92%);
+				}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms ul > li.active {
+					color: hsl(341 65% 48%);
+					border-color: hsl(341 65% 48%);
+
+					font-weight: 700;
+
+					cursor: default;
+				}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms > form {
+			--color: hsl(341 65% 48%);
+
+			padding: .7em;
+
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: .5em
+		}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms > form > * {
+				font: inherit;
+			}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms > form > [type="text"] {
+				padding: .3em .2em;
+
+				grid-column: span 2;
+			}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms > form > :not([type="text"]) {
+				all: unset;
+
+				display: inline-block;
+				padding: .3em .2em;
+
+				text-align: center;
+
+				border-radius: .2em;
+
+				cursor: pointer
+			}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms > form > :not([type="text"]):where(:hover, :active, :focus):not(:disabled) {
+					filter: brightness(120%);
+				}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms > form > :not([type="text"]):disabled {
+					opacity: .5;
+					cursor: not-allowed;
+				}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms > form > [type="submit"] {
+				background-color: var(--color);
+				color: whitesmoke;
+			}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms > form > [type="reset"] {
+				border: 1px solid var(--color);
+				color: var(--color)
+			}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms > form > [type="reset"]:where(:hover, :active, :focus):not(:disabled) {
+					background-color: var(--color);
+					color: whitesmoke;
+				}
+
+[mv-app="chat"][mv-permissions~="logout"] .mv-bar {
+		grid-row: 1;
+		grid-column: span 2;
+
 		display: flex;
 		align-items: center;
 
@@ -153,7 +304,7 @@ body {
 		border-bottom: 1px solid rgb(0 0 0 / .05)
 	}
 
-[mv-permissions~="logout"] .mv-bar h2 {
+[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 {
 			margin: 0;
 
 			flex: 1;
@@ -162,10 +313,11 @@ body {
 			gap: .3em;
 			align-items: center;
 
-			line-height: 1.1
+			line-height: 1.1;
+			font-size: 160%
 		}
 
-[mv-permissions~="logout"] .mv-bar h2::before {
+[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1::before {
 				display: inline-block;
 				inline-size: 1.1em;
 				aspect-ratio: 1;
@@ -173,11 +325,11 @@ body {
 				content: url("images/chatbubbles.svg");
 			}
 
-[mv-permissions~="logout"] .mv-bar > p {
+[mv-app="chat"][mv-permissions~="logout"] .mv-bar > p {
 			display: none;
 		}
 
-[mv-permissions~="logout"] .mv-bar .mv-logout {
+[mv-app="chat"][mv-permissions~="logout"] .mv-bar .mv-logout {
 			display: inline-grid;
 			place-items: center;
 
@@ -185,27 +337,27 @@ body {
 			background: none;
 		}
 
-[mv-permissions~="logout"] .mv-bar .mv-logout > img {
+[mv-app="chat"][mv-permissions~="logout"] .mv-bar .mv-logout > img {
 				block-size: 65%;
 
 				opacity: .85
 			}
 
-[mv-permissions~="logout"] .mv-bar .mv-logout > img:where(:hover, :active, :focus) {
+[mv-app="chat"][mv-permissions~="logout"] .mv-bar .mv-logout > img:where(:hover, :active, :focus) {
 					opacity: 1;
 					filter: brightness(250%);
 				}
 
-[mv-permissions~="logout"] .mv-bar .mv-logout {
+[mv-app="chat"][mv-permissions~="logout"] .mv-bar .mv-logout {
 
 			cursor: pointer;
 		}
 
-.mv-bar h2 {
+[mv-app="chat"] .mv-bar h1 {
 		cursor: default;
 	}
 
-.mv-bar button {
+[mv-app="chat"] .mv-bar button {
 		cursor: pointer;
 	}
 
@@ -380,8 +532,10 @@ article.thread.mine[property="messages"] {
 		margin-block-end: -.5em;
 	}
 
-form {
+[mv-app="chat"] > form {
 	--bg-color: hsl(285 40% 38%);
+
+	grid-column: 2;
 
 	position: sticky;
 	bottom: 0;
@@ -402,7 +556,7 @@ form {
 	border-top: 1px solid rgb(0 0 0 / .05)
 }
 
-form [property="message"] {
+[mv-app="chat"] > form [property="message"] {
 		flex: 1;
 		margin-inline-end: .5em;
 		padding: .5em .7em;
@@ -419,11 +573,11 @@ form [property="message"] {
 		line-height: inherit
 	}
 
-form [property="message"]::placeholder {
+[mv-app="chat"] > form [property="message"]::placeholder {
 			opacity: .7;
 		}
 
-form > [type="submit"] {
+[mv-app="chat"] > form > [type="submit"] {
 		display: inline-grid;
 		place-items: center;
 
@@ -431,34 +585,34 @@ form > [type="submit"] {
 		background: none
 	}
 
-form > [type="submit"] > img {
+[mv-app="chat"] > form > [type="submit"] > img {
 			inline-size: 2.2em;
 		}
 
-form > [type="submit"] {
+[mv-app="chat"] > form > [type="submit"] {
 
 		cursor: pointer
 	}
 
-form > [type="submit"]:disabled {
+[mv-app="chat"] > form > [type="submit"]:disabled {
 			opacity: .5;
 			cursor: not-allowed;
 		}
 
-form > [type="submit"]:not(:disabled) > img:where(:hover, :active, :focus) {
+[mv-app="chat"] > form > [type="submit"]:not(:disabled) > img:where(:hover, :active, :focus) {
 				filter: hue-rotate(45deg) brightness(120%);
 			}
 
-[mv-progress="Loading"] {
+[mv-app="chat"][mv-progress="Loading"] {
 	background: none;
 	box-shadow: none
 }
 
-[mv-progress="Loading"] > * {
+[mv-app="chat"][mv-progress="Loading"] > * {
 		visibility: hidden;
 	}
 
-.mv-message.mv-error {
+.mv-message:where(.mv-error, .mv-deleted) {
 	display: none;
 }
 
@@ -473,22 +627,22 @@ form > [type="submit"]:not(:disabled) > img:where(:hover, :active, :focus) {
 }
 
 @media (max-width: 580px) {
-		[mv-permissions~="login"] .mv-bar {
+		[mv-app="chat"][mv-permissions~="login"] .mv-bar {
 			grid-template-columns: repeat(4, 3.5em)
 		}
 
-			[mv-permissions~="login"] .mv-bar h2 {
+			[mv-app="chat"][mv-permissions~="login"] .mv-bar h1 {
 				font-size: 400%;
 			}
 
-			[mv-permissions~="login"] .mv-bar > p {
+			[mv-app="chat"][mv-permissions~="login"] .mv-bar > p {
 				font-size: 90%;
 			}
 
-			[mv-permissions~="login"] .mv-bar button {
+			[mv-app="chat"][mv-permissions~="login"] .mv-bar button {
 				inline-size: 3.2em;
 			}
-		[mv-permissions~="logout"] #no-messages {
+		[mv-app="chat"][mv-permissions~="logout"] #no-messages {
 			font-size: 110%;
 		}
 }
