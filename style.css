@@ -118,9 +118,22 @@ body {
 			}
 
 [mv-permissions~="logout"] {
+	min-block-size: 100vh;
 	grid-template-rows: auto 1fr auto;
 	align-items: end
 }
+
+[mv-permissions~="logout"] > #no-messages {
+		place-self: center;
+
+		margin: 1em;
+
+		color: hsl(216 15% 60%);
+
+		text-align: center;
+		font-size: 140%;
+		font-weight: 100;
+	}
 
 [mv-permissions~="logout"] .mv-bar {
 		display: flex;
@@ -475,4 +488,7 @@ form > [type="submit"]:not(:disabled) > img:where(:hover, :active, :focus) {
 			[mv-permissions~="login"] .mv-bar button {
 				inline-size: 3.2em;
 			}
+		[mv-permissions~="logout"] #no-messages {
+			font-size: 110%;
+		}
 }

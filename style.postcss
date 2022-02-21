@@ -118,8 +118,21 @@ body {
 }
 
 [mv-permissions~="logout"] {
+	min-block-size: 100vh;
 	grid-template-rows: auto 1fr auto;
 	align-items: end;
+
+	& > #no-messages {
+		place-self: center;
+
+		margin: 1em;
+
+		color: hsl(216 15% 60%);
+
+		text-align: center;
+		font-size: 140%;
+		font-weight: 100;
+	}
 
 	& .mv-bar {
 		display: flex;
@@ -483,6 +496,12 @@ form {
 			& button {
 				inline-size: 3.2em;
 			}
+		}
+	}
+
+	[mv-permissions~="logout"] {
+		& #no-messages {
+			font-size: 110%;
 		}
 	}
 }

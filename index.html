@@ -38,6 +38,10 @@
 		<meta property="username" content="[$user.name or $user.info.email]" mv-if="false" />
 		<meta property="avatar" content="[$user.avatar]" mv-if="false" />
 
+		<section id="no-messages" mv-if="count(messages) = 0">
+			<p>No messages yet.<br />Be the first to send one. 😉</p>
+		</section>
+
 		<section mv-list="messages" mv-initial-items="0" mv-if="userId">
 			<article mv-list-item mv-mode="[mode or read]"
 				class="mv-logged-in [if(sender.uid = userId, 'mine')] [if(deleted, 'deleted')] [if(sender.uid = $next.sender.uid and $next.timestamp - timestamp <= hour(), 'thread')]">
