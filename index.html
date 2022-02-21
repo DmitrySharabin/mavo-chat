@@ -38,7 +38,7 @@
 		<meta property="username" content="[$user.name or $user.info.email]" mv-if="false" />
 		<meta property="avatar" content="[$user.avatar]" mv-if="false" />
 
-		<section id="no-messages" mv-if="count(messages) = 0">
+		<section id="no-messages" mv-if="userId and count(messages) = 0">
 			<p>No messages yet.<br />Be the first to send one. 😉</p>
 		</section>
 
