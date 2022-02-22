@@ -24,7 +24,11 @@
 		mv-storage-providers="twitter facebook google github" mv-storage-options="realtime">
 
 		<div class="mv-bar">
-			<h1>Mavo Chat</h1>
+			<h1>
+				<span>Mavo Chat</span>
+				<label><input type="checkbox" property="menu" mv-storage="none" />[current_room]</label>
+				<div id="backdrop" mv-action="set(menu, false)" class="[if(menu, visible)]"></div>
+			</h1>
 			<p>Log in using your account</p>
 			<button class="mv-firebase-auth-google">Log in with Google</button>
 			<button class="mv-firebase-auth-facebook">Log in with Facebook</button>
@@ -38,18 +42,18 @@
 		<meta property="username" content="[$user.name or $user.info.email]" mv-if="false" />
 		<meta property="avatar" content="[$user.avatar]" mv-if="false" />
 
-		<meta property="current_room" content="General" mv-storage="none" mv-if="false" />
+		<meta property="current_room" mv-default="[first(room).name or 'General']" mv-storage="none" mv-if="false" />
 		<meta property="adding" content="[false]" mv-storage="none" mv-if="false" />
 
 		<section id="no-messages" mv-if="userId and count(messages) = 0">
 			<p>No messages yet.<br />Be the first to send one. 😉</p>
 		</section>
 
-		<section id="rooms" mv-if="userId">
+		<section id="rooms" mv-if="userId" class="[if(menu, visible)]">
 			<h2>Rooms <button aria-label="Add room" title="Add room" mv-action="set(adding, true)" disabled="[adding]">✚</button></h2>
 
 			<ul mv-list mv-value="all_rooms.rooms">
-				<li mv-list-item="room" class="[if(current_room = $item.name, active)]" mv-action="if(current_room != $item.name, clear(messages) & set(current_room, $item.name))" mv-group>[name]</li>
+				<li mv-list-item="room" class="[if(current_room = $item.name, active)]" mv-action="if(current_room != $item.name, clear(messages) & set(current_room, $item.name)) setif(menu, menu, false)" mv-group>[name]</li>
 			</ul>
 
 			<meta property="new_room" content="[group(name: name, creator: userId, created: $now)]" mv-if="false" />

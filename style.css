@@ -15,7 +15,7 @@
 }
 
 body {
-	inline-size: clamp(360px, 100%, 800px);
+	inline-size: clamp(360px, 100%, 900px);
 	block-size: 100%;
 	margin: auto;
 
@@ -61,8 +61,12 @@ body {
 
 			color: transparent;
 			-webkit-background-clip: text;
-			background-image: var(--gradient);
+			background-image: var(--gradient)
 		}
+
+[mv-app="chat"][mv-permissions~="login"] .mv-bar h1 > :where(label, #backdrop) {
+				display: none;
+			}
 
 [mv-app="chat"][mv-permissions~="login"] .mv-bar :where(h1, p) {
 			grid-column: span 4;
@@ -294,7 +298,7 @@ body {
 		top: 0;
 		left: 0;
 		right: 0;
-		z-index: 100;
+		z-index: 2;
 
 		padding-inline-start: 1em;
 
@@ -323,6 +327,10 @@ body {
 				aspect-ratio: 1;
 
 				content: url("images/chatbubbles.svg");
+			}
+
+[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > :where(label, #backdrop) {
+				display: none;
 			}
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar > p {
@@ -640,7 +648,63 @@ article.thread.mine[property="messages"] {
 			[mv-app="chat"][mv-permissions~="login"] .mv-bar button {
 				inline-size: 3.2em;
 			}
+
+	[mv-app="chat"][mv-permissions~="logout"] {
+		grid-template-columns: 1fr
+	}
+
 		[mv-app="chat"][mv-permissions~="logout"] #no-messages {
 			font-size: 110%;
 		}
+
+		[mv-app="chat"][mv-permissions~="logout"] > #rooms {
+			position: fixed;
+			inline-size: 300px;
+
+			z-index: 3;
+
+			transition: transform .2s ease-out
+		}
+
+			[mv-app="chat"][mv-permissions~="logout"] > #rooms:not(.visible) {
+				transform: translateX(-300px);
+			}
+				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1::before {
+					inline-size: 0;
+					transform: scale(0);
+				}
+
+				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > span {
+					display: none;
+				}
+
+				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > label {
+					display: flex;
+					align-items: center;
+
+					overflow: hidden;
+					text-overflow: ellipsis
+				}
+
+					[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > label::before {
+						display: inline-block;
+						inline-size: 1em;
+						block-size: 1em;
+
+						content: url("images/menu.svg");
+					}
+
+					[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > label > [type="checkbox"] {
+						inline-size: 0;
+						transform: scale(0);
+					}
+
+				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > #backdrop.visible {
+					position: fixed;
+					inset: 0;
+
+					background-color: rgb(0 0 0 / .3);
+
+					z-index: 2;
+				}
 }
