@@ -535,8 +535,6 @@ article.thread.mine[property="messages"] {
 [mv-app="chat"] > form {
 	--bg-color: hsl(285 40% 38%);
 
-	grid-column: 2;
-
 	position: sticky;
 	bottom: 0;
 	left: 0;

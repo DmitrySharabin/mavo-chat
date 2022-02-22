@@ -59,7 +59,7 @@
 			</form>
 		</section>
 
-		<section mv-list="messages" mv-initial-items="0" mv-if="userId">
+		<section mv-list="messages" mv-initial-items="0" mv-if="userId and count($this) > 0">
 			<article mv-list-item mv-mode="[mode or read]"
 				class="mv-logged-in [if(sender.uid = userId, 'mine')] [if(deleted, 'deleted')] [if(sender.uid = $next.sender.uid and $next.timestamp - timestamp <= hour(), 'thread')]">
 
