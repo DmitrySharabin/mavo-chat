@@ -52,10 +52,10 @@
 				<li mv-list-item="room" class="[if(current_room = $item, active)]" mv-action="if(current_room != $item, clear(messages) & set(current_room, $item))"></li>
 			</ul>
 
-			<form mv-action="if(room_name.trim() != '', add(room_name, rooms.names) & set(adding, false) & set(room_name, ''))" mv-if="adding">
-				<input type="text" property="room_name" mv-storage="none" placeholder="Type room name" />
-				<input type="submit" value="Add" disabled="[room_name.trim() = '']" />
-				<input type="reset" value="Cancel" mv-action="set(room_name, '') & set(adding, false)" />
+			<form mv-action="if(name.trim() != '', add(name, rooms.names) & set(adding, false) & set(name, ''))" mv-if="adding">
+				<input type="text" property="name" mv-storage="none" placeholder="Type room name" />
+				<input type="submit" value="Add" disabled="[(name or '').trim() = '']" />
+				<input type="reset" value="Cancel" mv-action="set(name, '') & set(adding, false)" />
 			</form>
 		</section>
 
@@ -106,7 +106,7 @@
 			)
 		">
 			<input property="message" mv-storage="none" placeholder="Type a message" autofocus />
-			<button type="submit" aria-label="Send message" title="Send message" disabled="[message.trim() = '']"><img src="images/send.svg" width="48" height="48" aria-hidden="true" /></button>
+			<button type="submit" aria-label="Send message" title="Send message" disabled="[(message or '').trim() = '']"><img src="images/send.svg" width="48" height="48" aria-hidden="true" /></button>
 		</form>
 	</main>
 
