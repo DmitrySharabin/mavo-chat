@@ -53,7 +53,7 @@
 			</ul>
 
 			<meta property="new_room" content="[group(name: name, creator: userId, created: $now)]" mv-if="false" />
-			<form mv-action="if(name.trim() != '', add(new_room, all_rooms.rooms) & set(adding, false) & set(name, ''))" mv-if="adding">
+			<form mv-action="if(name.trim() != '', add(new_room, all_rooms.rooms) & set(current_room, name) & set(adding, false) & set(name, ''))" mv-if="adding">
 				<input type="text" property="name" mv-storage="none" placeholder="Type room name" />
 				<input type="submit" value="Add" disabled="[(name or '').trim() = '']" />
 				<input type="reset" value="Cancel" mv-action="set(name, '') & set(adding, false)" />
