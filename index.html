@@ -38,8 +38,8 @@
 		<meta property="username" content="[$user.name or $user.info.email]" mv-if="false" />
 		<meta property="avatar" content="[$user.avatar]" mv-if="false" />
 
-		<meta property="current_room" content="General" mv-storage="none" />
-		<meta property="adding" content="[false]" mv-storage="none" />
+		<meta property="current_room" content="General" mv-storage="none" mv-if="false" />
+		<meta property="adding" content="[false]" mv-storage="none" mv-if="false" />
 
 		<section id="no-messages" mv-if="userId and count(messages) = 0">
 			<p>No messages yet.<br />Be the first to send one. 😉</p>
@@ -48,11 +48,12 @@
 		<section id="rooms" mv-if="userId">
 			<h2>Rooms <button aria-label="Add room" title="Add room" mv-action="set(adding, true)" disabled="[adding]">✚</button></h2>
 
-			<ul mv-list mv-value="rooms.names">
-				<li mv-list-item="room" class="[if(current_room = $item, active)]" mv-action="if(current_room != $item, clear(messages) & set(current_room, $item))"></li>
+			<ul mv-list mv-value="all_rooms.rooms">
+				<li mv-list-item="room" class="[if(current_room = $item.name, active)]" mv-action="if(current_room != $item.name, clear(messages) & set(current_room, $item.name))" mv-group>[name]</li>
 			</ul>
 
-			<form mv-action="if(name.trim() != '', add(name, rooms.names) & set(adding, false) & set(name, ''))" mv-if="adding">
+			<meta property="new_room" content="[group(name: name, creator: userId, created: $now)]" mv-if="false" />
+			<form mv-action="if(name.trim() != '', add(new_room, all_rooms.rooms) & set(adding, false) & set(name, ''))" mv-if="adding">
 				<input type="text" property="name" mv-storage="none" placeholder="Type room name" />
 				<input type="submit" value="Add" disabled="[(name or '').trim() = '']" />
 				<input type="reset" value="Cancel" mv-action="set(name, '') & set(adding, false)" />
@@ -110,10 +111,10 @@
 		</form>
 	</main>
 
-	<div hidden mv-app="rooms" mv-bar="none" mv-autosave
+	<div hidden mv-app="all_rooms" mv-bar="none" mv-autosave
 		mv-plugins="firebase-firestore" mv-storage="firebase://mavo-demos/chat-rooms/all-rooms"
 		mv-storage-key="AIzaSyDvZ3EBuhlvFm529vMPeU7dbqvdkjv9WQU" mv-storage-options="realtime">
-		<ul mv-list="names" mv-initial-items="0" mv-if="false">
+		<ul mv-list="rooms" mv-initial-items="0" mv-if="false">
 			<li mv-list-item></li>
 		</ul>
 	</div>
