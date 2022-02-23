@@ -1,5 +1,6 @@
 :root {
 	--font-body: system-ui, sans-serif;
+	--rooms-panel-size: 300px;
 
 	--color: white;
 
@@ -125,7 +126,6 @@ body {
 	block-size: 100%;
 	overflow-y: scroll;
 
-	grid-template-columns: minmax(auto, 1fr) 3fr;
 	grid-template-rows: auto 1fr auto;
 	align-items: end
 }
@@ -134,6 +134,7 @@ body {
 		place-self: center;
 
 		margin: 1em;
+		margin-inline-start: calc(var(--rooms-panel-size) + 1em);
 
 		color: hsl(216 15% 60%);
 
@@ -145,19 +146,20 @@ body {
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms {
 		block-size: 100%;
-		overflow-y: scroll;
+		inline-size: var(--rooms-panel-size);
 
-		grid-row: 2 / span 3;
-		grid-column: 1;
-
-		align-self: start;
+		position: fixed;
 
 		background-color: whitesmoke;
-		border-right: 1px solid rgb(0 0 0 / .05)
+		border-right: 1px solid rgb(0 0 0 / .05);
+
+		z-index: 1
 	}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 {
 			margin: .7em .5em;
+			margin-block-start: 3em;
+
 			display: flex;
 			justify-content: space-between;
 			align-items: baseline;
@@ -289,7 +291,6 @@ body {
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar {
 		grid-row: 1;
-		grid-column: span 2;
 
 		display: flex;
 		align-items: center;
@@ -371,6 +372,10 @@ body {
 [mv-app="chat"] .mv-bar button {
 		cursor: pointer;
 	}
+
+section[property="messages"] {
+	margin-inline-start: var(--rooms-panel-size);
+}
 
 article[property="messages"] {
 	display: grid;
@@ -554,6 +559,7 @@ article.thread.mine[property="messages"] {
 	right: 0;
 
 	margin-block-start: 0.7em;
+	margin-inline-start: var(--rooms-panel-size);
 	padding: .5em .3em;
 	padding-inline-start: .75em;
 
@@ -636,7 +642,16 @@ article.thread.mine[property="messages"] {
 	}
 }
 
+@media (max-width: 830px) {
+	:root {
+		--rooms-panel-size: 200px;
+	}
+}
+
 @media (max-width: 580px) {
+	:root {
+		--rooms-panel-size: 300px;
+	}
 		[mv-app="chat"][mv-permissions~="login"] .mv-bar {
 			grid-template-columns: repeat(4, 3.5em)
 		}
@@ -652,19 +667,12 @@ article.thread.mine[property="messages"] {
 			[mv-app="chat"][mv-permissions~="login"] .mv-bar button {
 				inline-size: 3.2em;
 			}
-
-	[mv-app="chat"][mv-permissions~="logout"] {
-		grid-template-columns: 1fr
-	}
-
-		[mv-app="chat"][mv-permissions~="logout"] #no-messages {
+		[mv-app="chat"][mv-permissions~="logout"] > #no-messages {
+			margin-inline-start: revert;
 			font-size: 110%;
 		}
 
 		[mv-app="chat"][mv-permissions~="logout"] > #rooms {
-			position: fixed;
-			inline-size: 300px;
-
 			z-index: 3;
 
 			transition: transform .2s ease-out
@@ -674,7 +682,12 @@ article.thread.mine[property="messages"] {
 				transform: translateX(-300px);
 			}
 
+			[mv-app="chat"][mv-permissions~="logout"] > #rooms > h2 {
+				margin-block-start: revert;
+			}
+
 		[mv-app="chat"][mv-permissions~="logout"] .mv-bar {
+			min-inline-size: 0;
 			padding-inline-start: 0
 		}
 				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1::before {
@@ -726,4 +739,12 @@ article.thread.mine[property="messages"] {
 
 					z-index: 2;
 				}
+
+	section[property="messages"] {
+		margin-inline-start: revert;
+	}
+
+	[mv-app="chat"] > form {
+		margin-inline-start: revert;
+	}
 }

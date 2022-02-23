@@ -1,5 +1,6 @@
 :root {
 	--font-body: system-ui, sans-serif;
+	--rooms-panel-size: 300px;
 
 	--color: white;
 
@@ -125,7 +126,6 @@ body {
 	block-size: 100%;
 	overflow-y: scroll;
 
-	grid-template-columns: minmax(auto, 1fr) 3fr;
 	grid-template-rows: auto 1fr auto;
 	align-items: end;
 
@@ -133,6 +133,7 @@ body {
 		place-self: center;
 
 		margin: 1em;
+		margin-inline-start: calc(var(--rooms-panel-size) + 1em);
 
 		color: hsl(216 15% 60%);
 
@@ -144,18 +145,19 @@ body {
 
 	& > #rooms {
 		block-size: 100%;
-		overflow-y: scroll;
+		inline-size: var(--rooms-panel-size);
 
-		grid-row: 2 / span 3;
-		grid-column: 1;
-
-		align-self: start;
+		position: fixed;
 
 		background-color: whitesmoke;
 		border-right: 1px solid rgb(0 0 0 / .05);
 
+		z-index: 1;
+
 		& h2 {
 			margin: .7em .5em;
+			margin-block-start: 3em;
+
 			display: flex;
 			justify-content: space-between;
 			align-items: baseline;
@@ -288,7 +290,6 @@ body {
 
 	& .mv-bar {
 		grid-row: 1;
-		grid-column: span 2;
 
 		display: flex;
 		align-items: center;
@@ -369,6 +370,10 @@ body {
 	& button {
 		cursor: pointer;
 	}
+}
+
+section[property="messages"] {
+	margin-inline-start: var(--rooms-panel-size);
 }
 
 article[property="messages"] {
@@ -563,6 +568,7 @@ article[property="messages"].thread {
 	right: 0;
 
 	margin-block-start: 0.7em;
+	margin-inline-start: var(--rooms-panel-size);
 	padding: .5em .3em;
 	padding-inline-start: .75em;
 
@@ -648,7 +654,17 @@ article[property="messages"].thread {
 	}
 }
 
+@media (max-width: 830px) {
+	:root {
+		--rooms-panel-size: 200px;
+	}
+}
+
 @media (max-width: 580px) {
+	:root {
+		--rooms-panel-size: 300px;
+	}
+
 	[mv-app="chat"][mv-permissions~="login"] {
 		& .mv-bar {
 			grid-template-columns: repeat(4, 3.5em);
@@ -668,16 +684,12 @@ article[property="messages"].thread {
 	}
 
 	[mv-app="chat"][mv-permissions~="logout"] {
-		grid-template-columns: 1fr;
-
-		& #no-messages {
+		& > #no-messages {
+			margin-inline-start: revert;
 			font-size: 110%;
 		}
 
 		& > #rooms {
-			position: fixed;
-			inline-size: 300px;
-
 			z-index: 3;
 
 			transition: transform .2s ease-out;
@@ -685,9 +697,14 @@ article[property="messages"].thread {
 			&:not(.visible) {
 				transform: translateX(-300px);
 			}
+
+			& > h2 {
+				margin-block-start: revert;
+			}
 		}
 
 		& .mv-bar {
+			min-inline-size: 0;
 			padding-inline-start: 0;
 
 			& h1 {
@@ -742,5 +759,13 @@ article[property="messages"].thread {
 				}
 			}
 		}
+	}
+
+	section[property="messages"] {
+		margin-inline-start: revert;
+	}
+
+	[mv-app="chat"] > form {
+		margin-inline-start: revert;
 	}
 }
