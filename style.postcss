@@ -308,6 +308,7 @@ body {
 
 		& h1 {
 			margin: 0;
+			min-inline-size: 0;
 
 			flex: 1;
 
@@ -336,6 +337,8 @@ body {
 		}
 
 		& .mv-logout {
+			flex-shrink: 0;
+
 			display: inline-grid;
 			place-items: center;
 
@@ -679,6 +682,8 @@ article[property="messages"].thread {
 		}
 
 		& .mv-bar {
+			padding-inline-start: 0;
+
 			& h1 {
 				&::before {
 					inline-size: 0;
@@ -690,13 +695,22 @@ article[property="messages"].thread {
 				}
 
 				& > label {
+					min-inline-size: 0;
+
 					display: flex;
 					align-items: center;
 
-					overflow: hidden;
-					text-overflow: ellipsis;
+					& > span {
+						min-inline-size: 0;
+
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+					}
 
 					&::before {
+						flex-shrink: 0;
+
 						display: inline-block;
 						inline-size: 1em;
 						block-size: 1em;

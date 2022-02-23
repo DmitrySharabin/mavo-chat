@@ -310,6 +310,7 @@ body {
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 {
 			margin: 0;
+			min-inline-size: 0;
 
 			flex: 1;
 
@@ -338,6 +339,8 @@ body {
 		}
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar .mv-logout {
+			flex-shrink: 0;
+
 			display: inline-grid;
 			place-items: center;
 
@@ -666,6 +669,10 @@ article.thread.mine[property="messages"] {
 			[mv-app="chat"][mv-permissions~="logout"] > #rooms:not(.visible) {
 				transform: translateX(-300px);
 			}
+
+		[mv-app="chat"][mv-permissions~="logout"] .mv-bar {
+			padding-inline-start: 0
+		}
 				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1::before {
 					inline-size: 0;
 					transform: scale(0);
@@ -676,14 +683,23 @@ article.thread.mine[property="messages"] {
 				}
 
 				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > label {
-					display: flex;
-					align-items: center;
+					min-inline-size: 0;
 
-					overflow: hidden;
-					text-overflow: ellipsis
+					display: flex;
+					align-items: center
 				}
 
+					[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > label > span {
+						min-inline-size: 0;
+
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+					}
+
 					[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > label::before {
+						flex-shrink: 0;
+
 						display: inline-block;
 						inline-size: 1em;
 						block-size: 1em;
