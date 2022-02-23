@@ -94,7 +94,7 @@
 						title="Don't save changes" aria-label="Don't save changes">🔙</button>
 
 					<button class="action-button" mv-if="deleted and deleted_message" mv-action="set(message, deleted_message) set(deleted_message, '') set(deleted, false) save()"
-						title="Restore message" aria-label="Restore message">↩️</button>
+						title="Restore message" aria-label="Restore message">↩︎</button>
 					<button class="mv-delete" mv-if="!deleted" mv-action="set(deleted_message, message) set(message, '') set(deleted, true) save()"
 						title="Delete message" aria-label="Delete message">❌</button>
 				</div>
