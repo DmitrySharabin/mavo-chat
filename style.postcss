@@ -622,7 +622,13 @@ article[property="messages"].thread {
 	}
 }
 
-[mv-app="chat"][mv-progress="Loading"] {
+[mv-app="chat"][mv-permissions~="login"][mv-progress="Loading"] {
+	& > *  {
+		visibility: hidden;
+	}
+}
+
+[mv-app="chat"][mv-permissions~="logout"][mv-progress="Loading"] {
 	& #no-messages  {
 		opacity: 0;
 	}

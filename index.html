@@ -57,7 +57,7 @@
 			</ul>
 
 			<meta property="new_room" content="[group(name: name, creator: userId, created: $now)]" mv-if="false" />
-			<form mv-action="if(name.trim() != '', add(new_room, all_rooms.rooms) & set(current_room, name) & set(adding, false) & set(name, ''))" mv-if="adding">
+			<form mv-action="if(name.trim() != '', add(new_room, all_rooms.rooms) & set(current_room, name) & save('all_rooms') & set(adding, false) & set(name, ''))" mv-if="adding">
 				<input type="text" property="name" mv-storage="none" placeholder="Type a room name" />
 				<input type="submit" value="Add" disabled="[(name or '').trim() = '']" />
 				<input type="reset" value="Cancel" mv-action="set(name, '') & set(adding, false)" />
@@ -88,14 +88,14 @@
 				<div class="action-buttons" mv-if="sender.uid = userId">
 					<button class="action-button" mv-if="!deleted and (!mode or mode = read)" mv-action="set(mode, edit)"
 						title="Edit message" aria-label="Edit message">✏️</button>
-					<button class="action-button" mv-if="mode = edit" mv-action="set(mode, read) save(true)"
+					<button class="action-button" mv-if="mode = edit" mv-action="set(mode, read) save('chat', true)"
 						title="Save changes" aria-label="Save changes">💾</button>
 					<button class="action-button" mv-if="mode = edit" mv-action="set(mode, read)"
 						title="Don't save changes" aria-label="Don't save changes">🔙</button>
 
-					<button class="action-button" mv-if="deleted and deleted_message" mv-action="set(message, deleted_message) set(deleted_message, '') set(deleted, false) save()"
+					<button class="action-button" mv-if="deleted and deleted_message" mv-action="set(message, deleted_message) set(deleted_message, '') set(deleted, false) save('chat')"
 						title="Restore message" aria-label="Restore message">↩︎</button>
-					<button class="mv-delete" mv-if="!deleted" mv-action="set(deleted_message, message) set(message, '') set(deleted, true) save()"
+					<button class="mv-delete" mv-if="!deleted" mv-action="set(deleted_message, message) set(message, '') set(deleted, true) save('chat')"
 						title="Delete message" aria-label="Delete message">❌</button>
 				</div>
 			</article>
@@ -107,7 +107,7 @@
 		<form mv-if="userId" mv-action="if(message.trim() != '',
 				add(group(message: message, sender: group(uid: userId, name: username, avatar: avatar), timestamp: $now), messages) &
 				set(message, '') &
-				save()
+				save('chat')
 			)
 		">
 			<input property="message" mv-storage="none" placeholder="Type a message" autofocus />
@@ -115,7 +115,7 @@
 		</form>
 	</main>
 
-	<div hidden mv-app="all_rooms" mv-bar="none" mv-autosave
+	<div hidden mv-app="all_rooms" mv-bar="none"
 		mv-plugins="firebase-firestore" mv-storage="firebase://mavo-demos/chat-rooms/all-rooms"
 		mv-storage-key="AIzaSyDvZ3EBuhlvFm529vMPeU7dbqvdkjv9WQU" mv-storage-options="auth realtime">
 		<ul mv-list="rooms" mv-initial-items="0" mv-if="false">
@@ -139,8 +139,8 @@
 			});
 		});
 
-		function save(editing = false) {
-			const app = Mavo.all["chat"];
+		function save (name, editing = false) {
+			const app = Mavo.all[name];
 
 			if (editing && !app.unsavedChanges) {
 				return;

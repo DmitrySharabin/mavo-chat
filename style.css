@@ -614,7 +614,11 @@ article.thread.mine[property="messages"] {
 				filter: hue-rotate(45deg) brightness(120%);
 			}
 
-[mv-app="chat"][mv-progress="Loading"] #no-messages  {
+[mv-app="chat"][mv-permissions~="login"][mv-progress="Loading"] > *  {
+		visibility: hidden;
+	}
+
+[mv-app="chat"][mv-permissions~="logout"][mv-progress="Loading"] #no-messages  {
 		opacity: 0;
 	}
 
