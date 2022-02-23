@@ -415,6 +415,8 @@ article[property="messages"] {
 	}
 
 	& [property="message"] {
+		position: relative;
+
 		grid-area: message;
 
 		inline-size: 80%;
@@ -618,11 +620,8 @@ article[property="messages"].thread {
 }
 
 [mv-app="chat"][mv-progress="Loading"] {
-	background: none;
-	box-shadow: none;
-
-	& > * {
-		visibility: hidden;
+	& #no-messages  {
+		opacity: 0;
 	}
 }
 
@@ -712,6 +711,8 @@ article[property="messages"].thread {
 				}
 
 				& > #backdrop.visible {
+					display: revert;
+
 					position: fixed;
 					inset: 0;
 

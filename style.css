@@ -415,6 +415,8 @@ article[property="messages"] [property="sender"] [property="name"] {
 		}
 
 article[property="messages"] [property="message"] {
+		position: relative;
+
 		grid-area: message;
 
 		inline-size: 80%;
@@ -609,13 +611,8 @@ article.thread.mine[property="messages"] {
 				filter: hue-rotate(45deg) brightness(120%);
 			}
 
-[mv-app="chat"][mv-progress="Loading"] {
-	background: none;
-	box-shadow: none
-}
-
-[mv-app="chat"][mv-progress="Loading"] > * {
-		visibility: hidden;
+[mv-app="chat"][mv-progress="Loading"] #no-messages  {
+		opacity: 0;
 	}
 
 .mv-message:where(.mv-error, .mv-deleted) {
@@ -700,6 +697,8 @@ article.thread.mine[property="messages"] {
 					}
 
 				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 > #backdrop.visible {
+					display: revert;
+
 					position: fixed;
 					inset: 0;
 
