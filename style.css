@@ -149,6 +149,7 @@ body {
 		inline-size: var(--rooms-panel-size);
 
 		position: fixed;
+		overflow: scroll;
 
 		background-color: whitesmoke;
 		border-right: 1px solid rgb(0 0 0 / .05);
@@ -157,14 +158,20 @@ body {
 	}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 {
-			margin: .7em .5em;
-			margin-block-start: 3em;
+			padding: .7em .5em;
+			margin: 0;
+			margin-block-start: 2.5em;
+
+			position: fixed;
+			inline-size: calc(var(--rooms-panel-size) - 1em);
+			z-index: 2;
 
 			display: flex;
 			justify-content: space-between;
 			align-items: baseline;
 
 			color: hsl(285 40% 38%);
+			background-color: inherit;
 
 			font-weight: 500;
 			text-transform: uppercase;
@@ -199,6 +206,7 @@ body {
 [mv-app="chat"][mv-permissions~="logout"] > #rooms ul {
 			padding: 0;
 			margin: 0;
+			margin-block-start: 8em;
 
 			list-style: none;
 
@@ -683,7 +691,11 @@ article.thread.mine[property="messages"] {
 			}
 
 			[mv-app="chat"][mv-permissions~="logout"] > #rooms > h2 {
-				margin-block-start: revert;
+				margin-block-start: 0;
+			}
+
+			[mv-app="chat"][mv-permissions~="logout"] > #rooms ul {
+				margin-block-start: 4.2em;
 			}
 
 		[mv-app="chat"][mv-permissions~="logout"] .mv-bar {
