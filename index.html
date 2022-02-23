@@ -49,7 +49,7 @@
 			<p>No messages yet.<br />Be the first to send one. 😉</p>
 		</section>
 
-		<section id="rooms" mv-if="userId" class="[if(menu, visible)]">
+		<aside id="rooms" mv-if="userId" class="[if(menu, visible)]">
 			<h2>Rooms <button aria-label="Add room" title="Add room" mv-action="set(adding, true)" disabled="[adding]">✚</button></h2>
 
 			<ul mv-list mv-value="all_rooms.rooms">
@@ -62,7 +62,7 @@
 				<input type="submit" value="Add" disabled="[(name or '').trim() = '']" />
 				<input type="reset" value="Cancel" mv-action="set(name, '') & set(adding, false)" />
 			</form>
-		</section>
+		</aside>
 
 		<section mv-list="messages" mv-initial-items="0" mv-if="userId and count($this) > 0">
 			<article mv-list-item mv-mode="[mode or read]"
