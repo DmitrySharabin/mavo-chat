@@ -124,7 +124,6 @@ body {
 
 [mv-app="chat"][mv-permissions~="logout"] {
 	block-size: 100%;
-	overflow-y: scroll;
 
 	grid-template-rows: auto 1fr auto;
 	align-items: end
@@ -149,6 +148,9 @@ body {
 		inline-size: var(--rooms-panel-size);
 
 		position: fixed;
+		top: 0;
+		bottom: 0;
+
 		overflow: scroll;
 
 		background-color: whitesmoke;
@@ -160,7 +162,7 @@ body {
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 {
 			padding: .7em .5em;
 			margin: 0;
-			margin-block-start: 2.5em;
+			margin-block-start: 2em;
 
 			position: fixed;
 			inline-size: calc(var(--rooms-panel-size) - 1em);
@@ -206,7 +208,7 @@ body {
 [mv-app="chat"][mv-permissions~="logout"] > #rooms ul {
 			padding: 0;
 			margin: 0;
-			margin-block-start: 8em;
+			margin-block-start: 7em;
 
 			list-style: none;
 
@@ -304,6 +306,8 @@ body {
 				}
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar {
+		block-size: 3em;
+
 		grid-row: 1;
 
 		display: flex;
