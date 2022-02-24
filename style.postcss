@@ -160,7 +160,7 @@ body {
 		& h2 {
 			padding: .7em .5em;
 			margin: 0;
-			margin-block-start: 2em;
+			margin-block-start: 2.3em;
 
 			position: fixed;
 			inline-size: calc(var(--rooms-panel-size) - 1em);
@@ -206,7 +206,7 @@ body {
 		& ul {
 			padding: 0;
 			margin: 0;
-			margin-block-start: 7em;
+			margin-block-start: 7.3em;
 
 			list-style: none;
 
@@ -305,7 +305,7 @@ body {
 	}
 
 	& .mv-bar {
-		block-size: 3em;
+		block-size: 3.5em;
 
 		grid-row: 1;
 
@@ -319,6 +319,7 @@ body {
 		z-index: 2;
 
 		padding-inline-start: 1em;
+		padding-inline-end: .3em;
 
 		color: var(--color);
 		background-image: var(--gradient);
@@ -356,6 +357,7 @@ body {
 		}
 
 		& .mv-logout {
+			block-size: 100%;
 			flex-shrink: 0;
 
 			display: inline-grid;
@@ -365,7 +367,7 @@ body {
 			background: none;
 
 			& > img {
-				block-size: 65%;
+				block-size: 2.8em;
 
 				opacity: .85;
 
@@ -727,7 +729,7 @@ article[property="messages"].thread {
 
 		& .mv-bar {
 			min-inline-size: 0;
-			padding-inline-start: 0;
+			padding-inline-start: .5em;
 
 			& h1 {
 				&::before {
@@ -757,6 +759,7 @@ article[property="messages"].thread {
 						flex-shrink: 0;
 
 						display: inline-block;
+						margin-inline-end: .2em;
 						inline-size: 1em;
 						block-size: 1em;
 

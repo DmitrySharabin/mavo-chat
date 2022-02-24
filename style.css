@@ -162,7 +162,7 @@ body {
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 {
 			padding: .7em .5em;
 			margin: 0;
-			margin-block-start: 2em;
+			margin-block-start: 2.3em;
 
 			position: fixed;
 			inline-size: calc(var(--rooms-panel-size) - 1em);
@@ -208,7 +208,7 @@ body {
 [mv-app="chat"][mv-permissions~="logout"] > #rooms ul {
 			padding: 0;
 			margin: 0;
-			margin-block-start: 7em;
+			margin-block-start: 7.3em;
 
 			list-style: none;
 
@@ -306,7 +306,7 @@ body {
 				}
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar {
-		block-size: 3em;
+		block-size: 3.5em;
 
 		grid-row: 1;
 
@@ -320,6 +320,7 @@ body {
 		z-index: 2;
 
 		padding-inline-start: 1em;
+		padding-inline-end: .3em;
 
 		color: var(--color);
 		background-image: var(--gradient);
@@ -358,6 +359,7 @@ body {
 		}
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar .mv-logout {
+			block-size: 100%;
 			flex-shrink: 0;
 
 			display: inline-grid;
@@ -368,7 +370,7 @@ body {
 		}
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar .mv-logout > img {
-				block-size: 65%;
+				block-size: 2.8em;
 
 				opacity: .85
 			}
@@ -710,7 +712,7 @@ article.thread.mine[property="messages"] {
 
 		[mv-app="chat"][mv-permissions~="logout"] .mv-bar {
 			min-inline-size: 0;
-			padding-inline-start: 0
+			padding-inline-start: .5em
 		}
 				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1::before {
 					inline-size: 0;
@@ -740,6 +742,7 @@ article.thread.mine[property="messages"] {
 						flex-shrink: 0;
 
 						display: inline-block;
+						margin-inline-end: .2em;
 						inline-size: 1em;
 						block-size: 1em;
 
