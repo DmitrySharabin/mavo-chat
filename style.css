@@ -190,15 +190,12 @@ body {
 				border: 2px solid transparent;
 
 				color: inherit;
-				opacity: .75;
 
 				cursor: pointer
 			}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 button:where(:hover, :active, :focus):not(:disabled) {
 					border-color: hsl(285 40% 38%);
-
-					opacity: 1;
 				}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 button:disabled {
