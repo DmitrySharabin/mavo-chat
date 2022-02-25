@@ -201,6 +201,7 @@ body {
 				}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 button:disabled {
+					opacity: .5;
 					cursor: not-allowed;
 				}
 
