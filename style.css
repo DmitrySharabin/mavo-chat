@@ -25,8 +25,33 @@ body {
 	display: grid;
 	place-items: center;
 
-	font: 14px var(--font-body);
+	font: 14px var(--font-body)
 }
+
+body::before {
+		display: block;
+		margin: .2em;
+
+		position: fixed;
+		left: 0;
+		top: 0;
+		bottom: 0;
+
+		writing-mode: vertical-rl;
+		transform: rotate(.5turn);
+
+		text-align: center;
+    font-weight: 900;
+    font-size: 800%;
+		line-height: .8;
+
+		color: rgb(0 0 0 / .08);
+		text-shadow: -2px -2px rgb(255 255 255 / .8);
+
+		opacity: .8;
+
+		z-index: 0;
+	}
 
 [mv-app="chat"] {
 	inline-size: 100%;
@@ -659,6 +684,12 @@ article.thread.mine[property="messages"] {
 		button {
 			font-size: 100%;
 		}
+	}
+}
+
+@media (min-width: 1200px) {
+	body::before {
+		content: "Built with Mavo";
 	}
 }
 
