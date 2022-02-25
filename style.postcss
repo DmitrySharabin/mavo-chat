@@ -2,14 +2,16 @@
 	--font-body: system-ui, sans-serif;
 	--rooms-panel-size: 225px;
 
-	--color: white;
+	--color: whitesmoke;
+	--primary-color-1: hsl(285 40% 38%);
+	--primary-color-2: hsl(341 65% 48%);
 
 	--bubble-color: hsl(218 23% 23%);
 	--bubble-bg-color: hsl(210 38% 95%);
 
 	--avatar-size: 2em;
 
-	--gradient: linear-gradient(to left, hsl(341 65% 48%), hsl(285 40% 38%));
+	--gradient: linear-gradient(to left, var(--primary-color-2), var(--primary-color-1));
 
 	block-size: 100vh;
 	background-color: hsl(204 45% 98%);
@@ -91,7 +93,7 @@ body {
 			background-position: center;
 			background-size: 60%;
 			background-repeat: no-repeat;
-			background-color: hsl(285 40% 38%);
+			background-color: var(--primary-color-1);
 
 			cursor: pointer;
 
@@ -170,7 +172,7 @@ body {
 			justify-content: space-between;
 			align-items: baseline;
 
-			color: hsl(285 40% 38%);
+			color: var(--primary-color-1);
 			background-color: inherit;
 
 			font-weight: 500;
@@ -191,7 +193,7 @@ body {
 				cursor: pointer;
 
 				&:where(:hover, :active, :focus):not(:disabled) {
-					border-color: hsl(285 40% 38%);
+					border-color: var(--primary-color-1);
 				}
 
 				&:disabled {
@@ -227,8 +229,8 @@ body {
 				}
 
 				&.active {
-					color: hsl(341 65% 48%);
-					border-color: hsl(341 65% 48%);
+					color: var(--primary-color-2);
+					border-color: var(--primary-color-2);
 
 					font-weight: 700;
 
@@ -238,7 +240,7 @@ body {
 		}
 
 		& > form {
-			--color: hsl(341 65% 48%);
+			--color: var(--primary-color-2);
 
 			padding: .7em;
 
@@ -577,7 +579,7 @@ article[property="messages"].thread {
 }
 
 [mv-app="chat"] > form {
-	--bg-color: hsl(285 40% 38%);
+	--bg-color: var(--primary-color-1);
 
 	position: sticky;
 	bottom: 0;
@@ -595,7 +597,7 @@ article[property="messages"].thread {
 	font-size: 120%;
 	line-height: 1.4em;
 
-	background-color: hsl(210 38% 95%);
+	background-color: var(--bubble-bg-color);
 	border-top: 1px solid rgb(0 0 0 / .05);
 
 	& [property="message"] {
