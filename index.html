@@ -38,25 +38,25 @@
 		</div>
 
 		<!-- Logged-in user -->
-		<meta property="userId" content="[$user.info.uid]" mv-if="false" />
+		<meta property="user_id" content="[$user.info.uid]" mv-if="false" />
 		<meta property="username" content="[$user.name or $user.info.email]" mv-if="false" />
 		<meta property="avatar" content="[$user.avatar]" mv-if="false" />
 
 		<meta property="current_room" mv-default="[first(room).name or 'General']" mv-storage="none" mv-if="false" />
 		<meta property="adding" content="[false]" mv-storage="none" mv-if="false" />
 
-		<section id="no-messages" mv-if="userId and count(messages) = 0">
+		<section id="no-messages" mv-if="user_id and count(messages) = 0">
 			<p>No messages yet.<br />Be the first to send one. 😉</p>
 		</section>
 
-		<aside id="rooms" mv-if="userId" class="[if(menu, visible)]">
+		<aside id="rooms" mv-if="user_id" class="[if(menu, visible)]">
 			<h2>Rooms <button aria-label="Add room" title="Add room" mv-action="set(adding, true)" disabled="[adding]">✚</button></h2>
 
 			<ul mv-list mv-value="all_rooms.rooms">
 				<li mv-list-item="room" class="[if(current_room = $item.name, active)]" mv-action="if(current_room != $item.name, clear(messages) & set(current_room, $item.name)) setif(menu, menu, false)" mv-group>[name]</li>
 			</ul>
 
-			<meta property="new_room" content="[group(name: name, creator: userId, created: $now)]" mv-if="false" />
+			<meta property="new_room" content="[group(name: name, creator: user_id, created: $now)]" mv-if="false" />
 			<form mv-action="if(name.trim() != '', add(new_room, all_rooms.rooms) & clear(messages) & set(current_room, name) & save('all_rooms') & set(adding, false) & set(name, ''))" mv-if="adding">
 				<input type="text" property="name" mv-storage="none" placeholder="Type a room name" />
 				<input type="submit" value="Add" disabled="[(name or '').trim() = '']" />
@@ -64,9 +64,9 @@
 			</form>
 		</aside>
 
-		<section mv-list="messages" mv-initial-items="0" mv-if="userId and count($this) > 0">
+		<section mv-list="messages" mv-initial-items="0" mv-if="user_id and count($this) > 0">
 			<article mv-list-item mv-mode="[mode or read]"
-				class="mv-logged-in [if(sender.uid = userId, 'mine')] [if(deleted, 'deleted')] [if(sender.uid = $next.sender.uid and $next.timestamp - timestamp <= hour(), 'thread')]">
+				class="mv-logged-in [if(sender.uid = user_id, 'mine')] [if(deleted, 'deleted')] [if(sender.uid = $next.sender.uid and $next.timestamp - timestamp <= hour(), 'thread')]">
 
 				<meta property="mode" mv-storage="none" mv-if="false" />
 				<meta property="deleted" datatype="boolean" mv-if="false" />
@@ -85,7 +85,7 @@
 					[time(timestamp, "minutes")]
 				</p>
 
-				<div class="action-buttons" mv-if="sender.uid = userId">
+				<div class="action-buttons" mv-if="sender.uid = user_id">
 					<button class="action-button" mv-if="!deleted and (!mode or mode = read)" mv-action="set(mode, edit)"
 						title="Edit message" aria-label="Edit message">✏️</button>
 					<button class="action-button" mv-if="mode = edit" mv-action="set(mode, read) save('chat', true)"
@@ -104,8 +104,8 @@
 		<!-- 	A hack to scroll to the last message -->
 		<div id="end"></div>
 
-		<form mv-if="userId" mv-action="if(message.trim() != '',
-				add(group(message: message, sender: group(uid: userId, name: username, avatar: avatar), timestamp: $now), messages) &
+		<form mv-if="user_id" mv-action="if(message.trim() != '',
+				add(group(message: message, sender: group(uid: user_id, name: username, avatar: avatar), timestamp: $now), messages) &
 				set(message, '') &
 				save('chat')
 			)
