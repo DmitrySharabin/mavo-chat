@@ -157,6 +157,7 @@ body::before {
 }
 
 [mv-app="chat"][mv-permissions~="logout"] > #no-messages {
+		display: revert;
 		place-self: center;
 
 		margin: 1em;
@@ -171,6 +172,7 @@ body::before {
 	}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms {
+		display: revert;
 		block-size: 100%;
 		inline-size: var(--rooms-panel-size);
 
@@ -330,6 +332,11 @@ body::before {
 					color: whitesmoke;
 				}
 
+[mv-app="chat"][mv-permissions~="logout"] > section[property="messages"] {
+		display: revert;
+		margin-inline-start: var(--rooms-panel-size);
+	}
+
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar {
 		block-size: 3.5em;
 
@@ -417,10 +424,6 @@ body::before {
 [mv-app="chat"] .mv-bar button {
 		cursor: pointer;
 	}
-
-section[property="messages"] {
-	margin-inline-start: var(--rooms-panel-size);
-}
 
 article[property="messages"] {
 	display: grid;
@@ -595,7 +598,7 @@ article.thread.mine[property="messages"] {
 		margin-block-end: -.5em;
 	}
 
-[mv-app="chat"] > form {
+[mv-app="chat"][mv-permissions~="logout"] > form {
 	--bg-color: var(--primary-color-1);
 
 	position: sticky;
@@ -618,7 +621,7 @@ article.thread.mine[property="messages"] {
 	border-top: 1px solid rgb(0 0 0 / .05)
 }
 
-[mv-app="chat"] > form [property="message"] {
+[mv-app="chat"][mv-permissions~="logout"] > form [property="message"] {
 		flex: 1;
 		margin-inline-end: .5em;
 		padding: .5em .7em;
@@ -635,11 +638,11 @@ article.thread.mine[property="messages"] {
 		line-height: inherit
 	}
 
-[mv-app="chat"] > form [property="message"]::placeholder {
+[mv-app="chat"][mv-permissions~="logout"] > form [property="message"]::placeholder {
 			opacity: .7;
 		}
 
-[mv-app="chat"] > form > [type="submit"] {
+[mv-app="chat"][mv-permissions~="logout"] > form > [type="submit"] {
 		display: inline-grid;
 		place-items: center;
 
@@ -647,21 +650,21 @@ article.thread.mine[property="messages"] {
 		background: none
 	}
 
-[mv-app="chat"] > form > [type="submit"] > img {
+[mv-app="chat"][mv-permissions~="logout"] > form > [type="submit"] > img {
 			inline-size: 2.2em;
 		}
 
-[mv-app="chat"] > form > [type="submit"] {
+[mv-app="chat"][mv-permissions~="logout"] > form > [type="submit"] {
 
 		cursor: pointer
 	}
 
-[mv-app="chat"] > form > [type="submit"]:disabled {
+[mv-app="chat"][mv-permissions~="logout"] > form > [type="submit"]:disabled {
 			opacity: .5;
 			cursor: not-allowed;
 		}
 
-[mv-app="chat"] > form > [type="submit"]:not(:disabled) > img:where(:hover, :active, :focus) {
+[mv-app="chat"][mv-permissions~="logout"] > form > [type="submit"]:not(:disabled) > img:where(:hover, :active, :focus) {
 				filter: hue-rotate(45deg) brightness(120%);
 			}
 
@@ -741,6 +744,14 @@ article.thread.mine[property="messages"] {
 				margin-block-start: 4.2em;
 			}
 
+		[mv-app="chat"][mv-permissions~="logout"] > section[property="messages"] {
+			margin-inline-start: revert;
+		}
+
+		[mv-app="chat"][mv-permissions~="logout"] > form {
+			margin-inline-start: revert;
+		}
+
 		[mv-app="chat"][mv-permissions~="logout"] .mv-bar {
 			min-inline-size: 0;
 			padding-inline-start: .5em
@@ -795,12 +806,4 @@ article.thread.mine[property="messages"] {
 
 					z-index: 2;
 				}
-
-	section[property="messages"] {
-		margin-inline-start: revert;
-	}
-
-	[mv-app="chat"] > form {
-		margin-inline-start: revert;
-	}
 }

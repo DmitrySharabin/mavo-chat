@@ -156,6 +156,7 @@ body {
 	align-items: end;
 
 	& > #no-messages {
+		display: revert;
 		place-self: center;
 
 		margin: 1em;
@@ -170,6 +171,7 @@ body {
 	}
 
 	& > #rooms {
+		display: revert;
 		block-size: 100%;
 		inline-size: var(--rooms-panel-size);
 
@@ -329,6 +331,11 @@ body {
 		}
 	}
 
+	& > section[property="messages"] {
+		display: revert;
+		margin-inline-start: var(--rooms-panel-size);
+	}
+
 	& .mv-bar {
 		block-size: 3.5em;
 
@@ -415,10 +422,6 @@ body {
 	& button {
 		cursor: pointer;
 	}
-}
-
-section[property="messages"] {
-	margin-inline-start: var(--rooms-panel-size);
 }
 
 article[property="messages"] {
@@ -604,7 +607,7 @@ article[property="messages"].thread {
 	}
 }
 
-[mv-app="chat"] > form {
+[mv-app="chat"][mv-permissions~="logout"] > form {
 	--bg-color: var(--primary-color-1);
 
 	position: sticky;
@@ -758,6 +761,14 @@ article[property="messages"].thread {
 			}
 		}
 
+		& > section[property="messages"] {
+			margin-inline-start: revert;
+		}
+
+		& > form {
+			margin-inline-start: revert;
+		}
+
 		& .mv-bar {
 			min-inline-size: 0;
 			padding-inline-start: .5em;
@@ -815,13 +826,5 @@ article[property="messages"].thread {
 				}
 			}
 		}
-	}
-
-	section[property="messages"] {
-		margin-inline-start: revert;
-	}
-
-	[mv-app="chat"] > form {
-		margin-inline-start: revert;
 	}
 }
