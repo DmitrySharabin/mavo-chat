@@ -101,9 +101,6 @@
 			</article>
 		</section>
 
-		<!-- 	A hack to scroll to the last message -->
-		<div id="end"></div>
-
 		<form hidden mv-if="user_id" mv-action="if(message.trim() != '',
 				add(group(message: message, sender: group(uid: user_id, name: username, avatar: avatar), timestamp: $now), messages) &
 				set(message, '') &
@@ -135,7 +132,7 @@
 
 		$.bind(document, "mv-load mv-save", () => {
 			requestAnimationFrame(() => { // Give the browser a chance to render
-				$("#end").scrollIntoView();
+				$("[mv-app=chat][mv-permissions~=logout] article[property=messages]:last-of-type")?.scrollIntoView(false);
 			});
 		});
 
