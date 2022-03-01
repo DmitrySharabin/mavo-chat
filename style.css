@@ -558,6 +558,7 @@ article[property="messages"] .action-buttons button {
 			background-color: ghostwhite;
 			box-shadow: 0 0.1em 0.15em rgb(0 0 0 / 0.12);
 			font-size: 90%;
+			font-family: emoji;
 			text-align: center;
 		}
 
