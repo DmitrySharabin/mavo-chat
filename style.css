@@ -95,6 +95,7 @@ body::before {
 			white-space: nowrap;
 
 			color: transparent;
+			background-clip: text;
 			-webkit-background-clip: text;
 			background-image: var(--gradient)
 		}
@@ -694,12 +695,12 @@ article.thread.mine[property="messages"] {
 
 @media (any-pointer: coarse) {
 	[property="message"] ~ .action-buttons {
-		bottom: -1em;
+		bottom: -1em
+	}
 
-		button {
+		[property="message"] ~ .action-buttons button {
 			font-size: 100%;
 		}
-	}
 }
 
 @media (min-width: 1200px) {

@@ -93,6 +93,7 @@ body {
 			white-space: nowrap;
 
 			color: transparent;
+			background-clip: text;
 			-webkit-background-clip: text;
 			background-image: var(--gradient);
 
@@ -708,7 +709,7 @@ article[property="messages"].thread {
 	[property="message"] ~ .action-buttons {
 		bottom: -1em;
 
-		button {
+		& button {
 			font-size: 100%;
 		}
 	}
