@@ -598,6 +598,10 @@ article.thread.mine[property="messages"] {
 		margin-block-end: -0.5em;
 	}
 
+article[property="messages"]:last-of-type {
+	scroll-margin-bottom: calc(var(--send-message-size) + 1em);
+}
+
 [mv-app="chat"][mv-permissions~="logout"] > form {
 	--bg-color: var(--primary-color-1);
 
