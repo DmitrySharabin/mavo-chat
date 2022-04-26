@@ -14,7 +14,11 @@
 
 	--avatar-size: 2em;
 
-	--gradient: linear-gradient(to left, var(--primary-color-2), var(--primary-color-1));
+	--gradient: linear-gradient(
+		to left,
+		var(--primary-color-2),
+		var(--primary-color-1)
+	);
 
 	block-size: 100vh;
 	margin: 0;
@@ -32,33 +36,8 @@ body {
 	display: grid;
 	place-items: center;
 
-	font: 14px var(--font-body)
+	font: 14px var(--font-body);
 }
-
-body::before {
-		display: block;
-		margin: .2em;
-
-		position: fixed;
-		left: 0;
-		top: 0;
-		bottom: 0;
-
-		writing-mode: vertical-rl;
-		transform: rotate(.5turn);
-
-		text-align: center;
-    font-weight: 900;
-    font-size: 800%;
-		line-height: .8;
-
-		color: rgb(0 0 0 / .08);
-		text-shadow: -2px -2px rgb(255 255 255 / .8);
-
-		opacity: .8;
-
-		z-index: 0;
-	}
 
 [mv-app="chat"] {
 	inline-size: 100%;
@@ -66,7 +45,7 @@ body::before {
 	display: grid;
 
 	background-color: white;
-	box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -1px rgb(0 0 0 / .06);
+	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
 }
 
 [mv-app="chat"][mv-permissions~="login"] {
@@ -81,7 +60,7 @@ body::before {
 		grid-template-columns: repeat(4, 5.5em);
 		grid-template-rows: repeat(3, auto);
 		place-items: center;
-		gap: .5em
+		gap: 0.5em
 	}
 
 [mv-app="chat"][mv-permissions~="login"] .mv-bar h1 {
@@ -90,7 +69,7 @@ body::before {
 			font-size: 800%;
 			font-weight: 900;
 			text-align: center;
-			letter-spacing: -.03em;
+			letter-spacing: -0.03em;
 
 			white-space: nowrap;
 
@@ -120,7 +99,7 @@ body::before {
 			border-radius: 50%;
 
 			text-indent: -10000px;
-  		white-space: nowrap;
+			white-space: nowrap;
 
 			inline-size: 5em;
 			aspect-ratio: 1;
@@ -135,13 +114,13 @@ body::before {
 
 [mv-app="chat"][mv-permissions~="login"] .mv-bar button[class*="auth-google"] {
 				background-image: url("images/logo-google.svg");
-				background-position: calc(50% - .02em) 50%;
+				background-position: calc(50% - 0.02em) 50%;
 			}
 
 [mv-app="chat"][mv-permissions~="login"] .mv-bar button[class*="auth-facebook"] {
 				background-image: url("images/logo-facebook.svg");
 				background-size: 52%;
-				background-position: calc(50% - .08em) 50%;
+				background-position: calc(50% - 0.08em) 50%;
 			}
 
 [mv-app="chat"][mv-permissions~="login"] .mv-bar button[class*="auth-twitter"] {
@@ -192,13 +171,13 @@ body::before {
 		overflow: scroll;
 
 		background-color: whitesmoke;
-		border-right: 1px solid rgb(0 0 0 / .05);
+		border-right: 1px solid rgb(0 0 0 / 0.05);
 
 		z-index: 1
 	}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 {
-			padding: .7em .5em;
+			padding: 0.7em 0.5em;
 			margin: 0;
 
 			position: fixed;
@@ -221,9 +200,9 @@ body::before {
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 button {
 				all: unset;
 
-				padding: .1em .2em;
+				padding: 0.1em 0.2em;
 
-				border-radius: .2em;
+				border-radius: 0.2em;
 				border: 2px solid transparent;
 
 				color: inherit;
@@ -236,7 +215,7 @@ body::before {
 				}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms h2 button:disabled {
-					opacity: .5;
+					opacity: 0.5;
 					cursor: not-allowed;
 				}
 
@@ -255,7 +234,7 @@ body::before {
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms ul > li {
 				--line-width: 3px;
-				--padding-inline: .7em;
+				--padding-inline: 0.7em;
 				padding: var(--padding-inline);
 				padding-inline-start: calc(var(--padding-inline) - var(--line-width));
 
@@ -280,11 +259,11 @@ body::before {
 [mv-app="chat"][mv-permissions~="logout"] > #rooms > form {
 			--color: var(--primary-color-2);
 
-			padding: .7em;
+			padding: 0.7em;
 
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			gap: .5em
+			gap: 0.5em
 		}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms > form > * {
@@ -294,24 +273,23 @@ body::before {
 [mv-app="chat"][mv-permissions~="logout"] > #rooms > form > [type="text"] {
 				grid-column: span 2;
 
-				padding: .3em .4em;
+				padding: 0.3em 0.4em;
 
-				border: 1px solid rgb(0 0 0 / .2);
-				border-radius: .2em;
-				box-shadow: 0 .05em .1em rgb(0 0 0 / .2) inset;
+				border: 1px solid rgb(0 0 0 / 0.2);
+				border-radius: 0.2em;
+				box-shadow: 0 0.05em 0.1em rgb(0 0 0 / 0.2) inset;
 				background: whitesmoke;
-
 			}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms > form > :not([type="text"]) {
 				all: unset;
 
 				display: inline-block;
-				padding: .3em .2em;
+				padding: 0.3em 0.2em;
 
 				text-align: center;
 
-				border-radius: .2em;
+				border-radius: 0.2em;
 
 				cursor: pointer
 			}
@@ -321,7 +299,7 @@ body::before {
 				}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms > form > :not([type="text"]):disabled {
-					opacity: .5;
+					opacity: 0.5;
 					cursor: not-allowed;
 				}
 
@@ -360,12 +338,12 @@ body::before {
 		z-index: 2;
 
 		padding-inline-start: 1em;
-		padding-inline-end: .3em;
+		padding-inline-end: 0.3em;
 
 		color: var(--color);
 		background-image: var(--gradient);
 
-		border-bottom: 1px solid rgb(0 0 0 / .05)
+		border-bottom: 1px solid rgb(0 0 0 / 0.05)
 	}
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar h1 {
@@ -375,7 +353,7 @@ body::before {
 			flex: 1;
 
 			display: flex;
-			gap: .3em;
+			gap: 0.3em;
 			align-items: center;
 
 			line-height: 1.1;
@@ -412,7 +390,7 @@ body::before {
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar .mv-logout > img {
 				block-size: 2.8em;
 
-				opacity: .85
+				opacity: 0.85
 			}
 
 [mv-app="chat"][mv-permissions~="logout"] .mv-bar .mv-logout > img:where(:hover, :active, :focus) {
@@ -451,7 +429,7 @@ article[property="messages"][mv-mode="edit"] .action-buttons {
 			opacity: 1
 		}
 
-article[property="messages"][mv-mode="edit"] .action-buttons	.mv-delete {
+article[property="messages"][mv-mode="edit"] .action-buttons .mv-delete {
 				display: none;
 			}
 
@@ -604,11 +582,11 @@ article.mine[property="messages"]:not(.thread) [property="message"] {
 		}
 
 article[property="messages"].thread {
-	margin-block-end: -.7em
+	margin-block-end: -0.7em
 }
 
 article.thread.mine[property="messages"] {
-		margin-block-end: -.5em;
+		margin-block-end: -0.5em;
 	}
 
 [mv-app="chat"][mv-permissions~="logout"] > form {
@@ -629,13 +607,13 @@ article.thread.mine[property="messages"] {
 	line-height: 1.4em;
 
 	background-color: var(--bubble-bg-color);
-	border-top: 1px solid rgb(0 0 0 / .05)
+	border-top: 1px solid rgb(0 0 0 / 0.05)
 }
 
 [mv-app="chat"][mv-permissions~="logout"] > form [property="message"] {
 		flex: 1;
-		margin-inline: .5em;
-		padding: .5em .7em;
+		margin-inline: 0.5em;
+		padding: 0.5em 0.7em;
 
 		color: inherit;
 
@@ -650,14 +628,14 @@ article.thread.mine[property="messages"] {
 	}
 
 [mv-app="chat"][mv-permissions~="logout"] > form [property="message"]::placeholder {
-			opacity: .7;
+			opacity: 0.7;
 		}
 
 [mv-app="chat"][mv-permissions~="logout"] > form > [type="submit"] {
 		display: inline-grid;
 		place-items: center;
 
-		margin-inline-end: .5em;
+		margin-inline-end: 0.5em;
 
 		border: none;
 		background: none
@@ -673,7 +651,7 @@ article.thread.mine[property="messages"] {
 	}
 
 [mv-app="chat"][mv-permissions~="logout"] > form > [type="submit"]:disabled {
-			opacity: .5;
+			opacity: 0.5;
 			cursor: not-allowed;
 		}
 
@@ -681,11 +659,11 @@ article.thread.mine[property="messages"] {
 				filter: hue-rotate(45deg) brightness(120%);
 			}
 
-[mv-app="chat"][mv-permissions~="login"][mv-progress="Loading"] > *  {
+[mv-app="chat"][mv-permissions~="login"][mv-progress="Loading"] > * {
 		visibility: hidden;
 	}
 
-[mv-app="chat"][mv-permissions~="logout"][mv-progress="Loading"] #no-messages  {
+[mv-app="chat"][mv-permissions~="logout"][mv-progress="Loading"] #no-messages {
 		opacity: 0;
 	}
 
@@ -701,12 +679,6 @@ article.thread.mine[property="messages"] {
 		[property="message"] ~ .action-buttons button {
 			font-size: 100%;
 		}
-}
-
-@media (min-width: 1200px) {
-	body::before {
-		content: "Built with Mavo";
-	}
 }
 
 @media (max-width: 830px) {
@@ -745,7 +717,7 @@ article.thread.mine[property="messages"] {
 
 			z-index: 3;
 
-			transition: transform .2s ease-out
+			transition: transform 0.2s ease-out
 		}
 
 			[mv-app="chat"][mv-permissions~="logout"] > #rooms:not(.visible) {
@@ -766,7 +738,7 @@ article.thread.mine[property="messages"] {
 
 		[mv-app="chat"][mv-permissions~="logout"] .mv-bar {
 			min-inline-size: 0;
-			padding-inline-start: .5em
+			padding-inline-start: 0.5em
 		}
 				[mv-app="chat"][mv-permissions~="logout"] .mv-bar h1::before {
 					inline-size: 0;
@@ -796,7 +768,7 @@ article.thread.mine[property="messages"] {
 						flex-shrink: 0;
 
 						display: inline-block;
-						margin-inline-end: .2em;
+						margin-inline-end: 0.2em;
 						inline-size: 1em;
 						block-size: 1em;
 
@@ -814,7 +786,7 @@ article.thread.mine[property="messages"] {
 					position: fixed;
 					inset: 0;
 
-					background-color: rgb(0 0 0 / .3);
+					background-color: rgb(0 0 0 / 0.3);
 
 					z-index: 2;
 				}
