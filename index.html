@@ -53,7 +53,12 @@
 			<h2>Rooms <button aria-label="Add room" title="Add room" mv-action="set(adding, true)" disabled="[adding]">✚</button></h2>
 
 			<ul mv-list mv-value="all_rooms.rooms">
-				<li mv-list-item="room" class="[if(current_room = $item.name, active)]" mv-action="if(current_room != $item.name, clear(messages) & set(current_room, $item.name)) setif(menu, menu, false)" mv-group>[name]</li>
+				<li mv-list-item="room" class="[if(current_room = $item.name, active)]" mv-group>
+					<button title="[name] room"
+						mv-action="if(current_room != $item.name, clear(messages) & set(current_room, $item.name)) setif(menu, menu, false)">
+						[name]
+					</button>
+				</li>
 			</ul>
 
 			<meta property="new_room" content="[group(name: name, creator: user_id, created: $now)]" mv-if="false" />

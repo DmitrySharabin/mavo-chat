@@ -235,8 +235,7 @@ body {
 [mv-app="chat"][mv-permissions~="logout"] > #rooms ul > li {
 				--line-width: 3px;
 				--padding-inline: 0.7em;
-				padding: var(--padding-inline);
-				padding-inline-start: calc(var(--padding-inline) - var(--line-width));
+				padding: 0;
 
 				border-left: var(--line-width) solid transparent;
 
@@ -254,6 +253,16 @@ body {
 					font-weight: 700;
 
 					cursor: default;
+				}
+
+[mv-app="chat"][mv-permissions~="logout"] > #rooms ul > li > button {
+					all: unset;
+					box-sizing: border-box;
+
+					inline-size: 100%;
+					block-size: 100%;
+					padding: var(--padding-inline);
+					padding-inline-start: calc(var(--padding-inline) - var(--line-width));
 				}
 
 [mv-app="chat"][mv-permissions~="logout"] > #rooms > form {
